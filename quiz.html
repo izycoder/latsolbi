@@ -146,17 +146,18 @@
 
     .nav-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(36px, 1fr));
+      grid-template-columns: repeat(5, minmax(38px, 1fr));
       gap: 8px;
     }
 
     .nav-btn {
       border: 1px solid var(--line);
       background: #ffffff;
-      border-radius: 4px;
-      padding: 7px 0;
+      border-radius: 6px;
+      min-height: 36px;
+      padding: 6px 0;
       position: relative;
-      font-size: 12px;
+      font-size: 13px;
       font-family: "Source Sans 3", sans-serif;
       font-weight: 600;
       cursor: pointer;
@@ -353,6 +354,41 @@
 
       .hero {
         text-align: left;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 auto;
+      }
+
+      .quiz-actions {
+        flex-direction: column;
+      }
+
+      .quiz-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 18px 16px 10px;
+      }
+
+      .app {
+        padding: 16px 16px 60px;
+      }
+
+      .nav-grid {
+        grid-template-columns: repeat(4, minmax(40px, 1fr));
+      }
+
+      .nav-btn {
+        min-height: 40px;
+        font-size: 14px;
       }
     }
   </style>
