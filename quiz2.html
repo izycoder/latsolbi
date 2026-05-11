@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kuis 50 Soal - Business Intelligence</title>
+  <title>Kuis 50 Soal - Business Intelligence (Ronde 2)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -401,13 +401,13 @@
   <header>
     <div class="hero">
       <div>
-        <div class="hero-kicker">Latihan Kuis - Ronde 1</div>
-        <h1>MCQ 50 Soal Business Intelligence (Ronde 1)</h1>
-        <p>Latihan ini menampilkan satu soal per halaman. Klik salah satu pilihan untuk langsung melihat jawaban benar dan alasannya.</p>
+        <div class="hero-kicker">Latihan Kuis - Ronde 2</div>
+        <h1>MCQ 50 Soal Business Intelligence (Ronde 2)</h1>
+        <p>Variasi soal untuk memperkuat pemahaman Chapter 5, 8, dan 11. Satu soal per halaman, klik jawaban untuk lihat kunci dan alasan.</p>
       </div>
       <div class="hero-actions">
         <a class="btn" href="index.html">Kembali ke rangkuman</a>
-        <a class="btn" href="quiz2.html">Ronde 2</a>
+        <a class="btn" href="quiz.html">Ronde 1</a>
         <button class="btn primary" id="resetTop">Reset latihan</button>
       </div>
     </div>
@@ -446,37 +446,59 @@
   <script>
     const questions = [
       {
-        question: "Definisi data mining yang tepat adalah",
+        question: "Definisi data mining yang paling tepat adalah",
         options: [
           "Proses nontrivial mengekstraksi pengetahuan yang valid, novel, berguna, dan dapat dipahami",
-          "Proses menyimpan data ke server",
-          "Proses membuat dashboard otomatis",
+          "Proses penyimpanan data operasional",
+          "Proses membuat dashboard",
           "Proses menghapus data duplikat"
         ],
         answer: 0,
-        explain: "Data mining menekankan ekstraksi pengetahuan yang bernilai dari data."
+        explain: "Data mining menekankan penemuan pengetahuan yang bernilai dari data besar."
       },
       {
-        question: "Makna valid pada definisi data mining adalah",
+        question: "Istilah nontrivial pada data mining berarti",
         options: [
-          "Pola harus baru",
-          "Pola akurat dan dapat dipercaya, diuji pada data yang belum dilihat",
-          "Pola selalu berbentuk grafik",
-          "Pola hanya untuk eksperimen"
+          "Bisa dilakukan manual dengan kalkulasi sederhana",
+          "Membutuhkan algoritma kompleks dan tidak bisa manual",
+          "Tidak membutuhkan data besar",
+          "Hanya untuk visualisasi"
         ],
         answer: 1,
-        explain: "Valid berarti pola harus akurat dan terverifikasi."
+        explain: "Nontrivial menunjukkan proses yang kompleks dan berbasis algoritma."
       },
       {
-        question: "Makna novel pada definisi data mining adalah",
+        question: "Valid pada definisi data mining berarti",
+        options: [
+          "Pola harus baru",
+          "Pola akurat dan dapat dipercaya, diuji pada data uji",
+          "Pola hanya untuk eksperimen",
+          "Pola selalu sederhana"
+        ],
+        answer: 1,
+        explain: "Valid mengharuskan pola yang akurat dan terverifikasi."
+      },
+      {
+        question: "Novel pada definisi data mining berarti",
         options: [
           "Pola sudah diketahui",
           "Pengetahuan baru yang belum diketahui sebelumnya",
-          "Pola harus sederhana",
-          "Pola hanya dari data kecil"
+          "Pola hanya dari data kecil",
+          "Pola selalu visual"
         ],
         answer: 1,
-        explain: "Novel berarti pengetahuan yang dihasilkan harus baru."
+        explain: "Novel berarti pengetahuan baru yang memberi nilai tambah."
+      },
+      {
+        question: "Understandable pada definisi data mining berarti",
+        options: [
+          "Hanya bisa dipahami mesin",
+          "Dapat dipahami oleh manusia/pengambil keputusan",
+          "Tidak perlu dijelaskan",
+          "Selalu berupa grafik"
+        ],
+        answer: 1,
+        explain: "Hasil harus dapat dipahami agar berguna bagi keputusan."
       },
       {
         question: "Data mining disebut misnomer karena",
@@ -484,87 +506,109 @@
           "Yang digali adalah knowledge atau pola, bukan datanya",
           "Data tidak diperlukan",
           "Hanya untuk data kecil",
-          "Selalu memakai database terpisah"
+          "Selalu memakai database khusus"
         ],
         answer: 0,
-        explain: "Istilahnya menekankan penemuan pengetahuan, bukan menggali data."
+        explain: "Yang dicari adalah pengetahuan tersembunyi dalam data."
       },
       {
         question: "Nama lain data mining yang benar adalah",
         options: [
           "Knowledge Discovery in Databases (KDD)",
-          "Online Transaction Processing",
-          "Relational Normalization",
-          "Data Entry"
+          "OLTP",
+          "OLAP",
+          "ETL"
         ],
         answer: 0,
-        explain: "KDD adalah nama lain yang umum untuk data mining."
+        explain: "KDD adalah istilah lain yang umum untuk data mining."
       },
       {
-        question: "Manakah yang bukan faktor pendorong data mining",
+        question: "Yang bukan faktor pendorong data mining adalah",
         options: [
           "Pengakuan nilai data",
           "Ketersediaan data berkualitas",
-          "Konsolidasi data ke data warehouse",
+          "Peningkatan kemampuan komputasi dan biaya turun",
           "Kewajiban memakai database terpisah khusus"
         ],
         answer: 3,
-        explain: "Kemajuan teknologi membuat database khusus tidak lagi wajib."
+        explain: "Database khusus tidak lagi wajib karena kemajuan teknologi."
       },
       {
-        question: "Pada CRISP-DM, langkah setelah Data Understanding adalah",
+        question: "Langkah pertama CRISP-DM adalah",
         options: [
+          "Business Understanding",
           "Data Preparation",
-          "Deployment",
-          "Evaluation",
-          "Business Understanding"
+          "Modeling",
+          "Deployment"
         ],
         answer: 0,
-        explain: "Urutan CRISP-DM: Business Understanding, Data Understanding, Data Preparation."
+        explain: "CRISP-DM dimulai dengan memahami tujuan bisnis."
       },
       {
-        question: "Pada SEMMA, tahap Modify berfokus pada",
+        question: "Langkah CRISP-DM yang mengevaluasi model terhadap tujuan bisnis adalah",
         options: [
-          "Membangun model",
-          "Transformasi dan rekayasa fitur",
-          "Menilai performa akhir",
-          "Mengambil sampel"
-        ],
-        answer: 1,
-        explain: "Modify mencakup transformasi, pembersihan, dan konstruksi fitur."
-      },
-      {
-        question: "Tahap inti pada KDD yang menemukan pola adalah",
-        options: [
-          "Selection",
-          "Preprocessing",
-          "Data Mining",
-          "Interpretation"
+          "Data Understanding",
+          "Modeling",
+          "Evaluation",
+          "Deployment"
         ],
         answer: 2,
-        explain: "Inti KDD adalah tahap Data Mining."
+        explain: "Evaluation memastikan model sesuai tujuan bisnis, bukan hanya akurasi."
       },
       {
-        question: "Perbedaan utama predictive dan descriptive task adalah",
+        question: "Tahap Explore pada SEMMA fokus pada",
         options: [
-          "Predictive memprediksi target, descriptive tanpa target",
+          "Eksplorasi data dan EDA",
+          "Membangun model akhir",
+          "Deploy model",
+          "Mengambil sampel"
+        ],
+        answer: 0,
+        explain: "Explore berisi eksplorasi data, distribusi, outlier, dan pola."
+      },
+      {
+        question: "Tahap Transformation dalam KDD berarti",
+        options: [
+          "Mengubah format/fitur agar lebih representatif",
+          "Menyimpan data ke database",
+          "Menilai performa model",
+          "Menyebarkan hasil"
+        ],
+        answer: 0,
+        explain: "Transformation menyiapkan data agar siap ditambang."
+      },
+      {
+        question: "Perbedaan utama predictive vs descriptive task adalah",
+        options: [
+          "Predictive memprediksi target, descriptive tidak memiliki target",
           "Predictive tanpa target, descriptive dengan target",
-          "Keduanya selalu sama",
+          "Keduanya sama",
           "Descriptive hanya untuk time series"
         ],
         answer: 0,
-        explain: "Predictive memiliki target yang diprediksi, descriptive tidak."
+        explain: "Predictive memiliki target yang diprediksi; descriptive menemukan pola."
       },
       {
-        question: "Pasangan yang benar adalah",
+        question: "Classification digunakan ketika target",
         options: [
-          "Classification: target kategori; Regression: target numerik; Clustering: tanpa target",
-          "Classification: target numerik; Regression: target kategori; Clustering: tanpa target",
-          "Classification: tanpa target; Regression: target numerik; Clustering: target kategori",
-          "Semua sama"
+          "Kategoris",
+          "Numerik kontinu",
+          "Tidak ada target",
+          "Selalu berupa teks panjang"
         ],
         answer: 0,
-        explain: "Classification memprediksi kategori, regression memprediksi nilai."
+        explain: "Classification memprediksi label atau kategori."
+      },
+      {
+        question: "Regression digunakan ketika target",
+        options: [
+          "Numerik kontinu",
+          "Kategoris",
+          "Tidak ada target",
+          "Berbentuk gambar"
+        ],
+        answer: 0,
+        explain: "Regression memprediksi nilai numerik kontinu."
       },
       {
         question: "Contoh splitting criteria pada decision tree adalah",
@@ -578,47 +622,58 @@
         explain: "Decision tree memakai kriteria seperti Information Gain atau Gini."
       },
       {
-        question: "Contoh stopping criteria yang benar adalah",
+        question: "Tujuan pruning pada decision tree adalah",
         options: [
-          "Semua data di node sudah satu kelas",
-          "Memilih atribut dengan Information Gain tertinggi",
+          "Mengurangi overfitting",
           "Menambah jumlah fitur",
-          "Menurunkan learning rate"
+          "Menghapus data valid",
+          "Memperbesar learning rate"
         ],
         answer: 0,
-        explain: "Pohon berhenti jika node sudah homogen atau memenuhi batas tertentu."
+        explain: "Pruning memperbaiki generalisasi dengan memangkas cabang berlebih."
       },
       {
-        question: "Post-pruning berarti",
+        question: "Langkah ke-3 k-means adalah",
         options: [
-          "Menghentikan pembentukan pohon lebih awal",
-          "Membangun pohon penuh lalu memangkas cabang tidak signifikan",
-          "Menghapus data training",
-          "Mengganti kriteria split"
-        ],
-        answer: 1,
-        explain: "Post-pruning dilakukan setelah pohon lengkap dibangun."
-      },
-      {
-        question: "Langkah ke-2 k-means adalah",
-        options: [
-          "Menentukan k dan centroid awal",
+          "Menentukan k",
           "Assign tiap titik ke centroid terdekat",
           "Menghitung ulang centroid baru",
           "Menghentikan iterasi"
         ],
-        answer: 1,
-        explain: "Setelah centroid awal, tiap titik diassign ke centroid terdekat."
+        answer: 2,
+        explain: "Setelah assignment, centroid dihitung ulang dari rata-rata cluster."
+      },
+      {
+        question: "Tantangan utama k-means adalah",
+        options: [
+          "Menentukan nilai k optimal",
+          "Tidak bisa menangani data numerik",
+          "Tidak butuh centroid",
+          "Selalu supervised"
+        ],
+        answer: 0,
+        explain: "Pemilihan k yang optimal adalah tantangan utama."
+      },
+      {
+        question: "Metrik utama association rules adalah",
+        options: [
+          "Support, Confidence, Lift",
+          "Accuracy, Recall, F1",
+          "RMSE, MAE, MAPE",
+          "Entropy, Gini, Chi-square"
+        ],
+        answer: 0,
+        explain: "Association rules dievaluasi dengan support, confidence, dan lift."
       },
       {
         question: "AUC 0.5 dan 1.0 berarti",
         options: [
+          "0.5 acak, 1.0 sempurna",
+          "0.5 sempurna, 1.0 acak",
           "0.5 lebih baik dari sempurna",
-          "0.5 acak, 1.0 klasifikasi sempurna",
-          "0.5 klasifikasi sempurna",
           "1.0 tidak bisa ditafsirkan"
         ],
-        answer: 1,
+        answer: 0,
         explain: "AUC 0.5 setara tebakan acak, 1.0 sempurna."
       },
       {
@@ -630,7 +685,29 @@
           "Data uji dipakai untuk training"
         ],
         answer: 0,
-        explain: "Dalam k-fold, setiap fold menjadi test set satu kali."
+        explain: "Setiap fold menjadi test set tepat sekali."
+      },
+      {
+        question: "Data mining memberi prediksi instan seperti crystal ball adalah",
+        options: [
+          "Mitos",
+          "Fakta",
+          "Selalu benar",
+          "Hanya untuk data kecil"
+        ],
+        answer: 0,
+        explain: "Ini mitos; data mining adalah proses multi-langkah."
+      },
+      {
+        question: "Pitfall data mining yang benar adalah",
+        options: [
+          "Memulai tanpa memikirkan tujuan akhir",
+          "Selalu memakai test set",
+          "Menyiapkan data dengan baik",
+          "Memvalidasi model"
+        ],
+        answer: 0,
+        explain: "Mulai tanpa tujuan akhir adalah jebakan umum data mining."
       },
       {
         question: "Prescriptive analytics menjawab",
@@ -641,265 +718,210 @@
           "Data apa yang hilang"
         ],
         answer: 2,
-        explain: "Prescriptive analytics fokus pada rekomendasi tindakan."
+        explain: "Prescriptive analytics memberi rekomendasi tindakan."
       },
       {
         question: "Untuk memilih dari sedikit alternatif secara optimal, teknik yang tepat adalah",
         options: [
-          "Neural networks",
           "Decision tables atau decision trees",
+          "Neural networks",
           "Association rules",
           "k-means"
         ],
-        answer: 1,
-        explain: "Decision tables/trees cocok untuk alternatif yang terbatas."
+        answer: 0,
+        explain: "Decision tables/trees cocok untuk alternatif terbatas."
       },
       {
-        question: "Komponen model kuantitatif mencakup",
+        question: "Komponen utama model Linear Programming adalah",
         options: [
-          "Input layer, hidden layer, output layer",
-          "Support, confidence, lift",
-          "ETL, OLAP, dashboard",
-          "Decision variables, result variables, uncontrollable variables"
-        ],
-        answer: 3,
-        explain: "Model kuantitatif berisi variabel keputusan, hasil, dan parameter tak terkendali."
-      },
-      {
-        question: "Asumsi utama linear programming adalah",
-        options: [
-          "Semua variabel harus kategori",
-          "Semua hubungan matematis linear",
-          "Tidak boleh ada constraint",
-          "Hanya untuk data kecil"
-        ],
-        answer: 1,
-        explain: "LP mensyaratkan hubungan yang linear."
-      },
-      {
-        question: "Komponen model Linear Programming adalah",
-        options: [
-          "Training data, test data, validation data",
-          "Centroid, cluster, silhouette",
           "Decision variables, objective function, constraints",
-          "Precision, recall, F1"
+          "Training data, test data, validation data",
+          "Support, confidence, lift",
+          "Input layer, hidden layer, output layer"
         ],
-        answer: 2,
+        answer: 0,
         explain: "LP terdiri dari variabel keputusan, fungsi tujuan, dan kendala."
+      },
+      {
+        question: "Objective function pada LP berfungsi untuk",
+        options: [
+          "Memaksimalkan atau meminimalkan tujuan",
+          "Menyimpan data",
+          "Membuat dashboard",
+          "Menghapus data"
+        ],
+        answer: 0,
+        explain: "Objective function menunjukkan tujuan optimasi."
       },
       {
         question: "Constraints merepresentasikan",
         options: [
-          "Daftar fitur",
+          "Batasan sumber daya atau aturan",
           "Nilai target",
           "Hasil akhir model",
-          "Sumber daya terbatas atau batasan kebijakan"
+          "Daftar fitur"
         ],
-        answer: 3,
-        explain: "Constraints membatasi ruang solusi berdasarkan sumber daya atau aturan."
+        answer: 0,
+        explain: "Constraints membatasi ruang solusi yang valid."
       },
       {
-        question: "Perbedaan slack dan surplus adalah",
+        question: "Slack dan surplus berbeda karena",
         options: [
-          "Slack pada >=, surplus pada <=",
-          "Slack pada <= sisa kapasitas; surplus pada >= kelebihan atas minimum",
+          "Slack untuk <=, surplus untuk >=",
+          "Slack untuk >=, surplus untuk <=",
           "Keduanya sama",
-          "Keduanya hanya ada di objective function"
+          "Keduanya hanya pada objective function"
         ],
-        answer: 1,
+        answer: 0,
         explain: "Slack muncul pada <=, surplus pada >=."
       },
       {
-        question: "Tujuan sensitivity analysis adalah",
+        question: "Sensitivity analysis digunakan untuk",
         options: [
-          "Menghapus variabel",
-          "Mengganti algoritma",
           "Menilai dampak perubahan input terhadap solusi",
-          "Menambah data training"
+          "Mengganti algoritma",
+          "Menambah data training",
+          "Menghapus variabel"
         ],
-        answer: 2,
-        explain: "Sensitivity analysis menilai dampak perubahan parameter."
+        answer: 0,
+        explain: "Sensitivity analysis menguji robustnya solusi."
       },
       {
-        question: "Perbedaan what-if dan goal seeking adalah",
+        question: "What-if analysis bersifat",
         options: [
-          "Keduanya sama",
-          "What-if forward, goal seeking backward",
-          "What-if backward, goal seeking forward",
-          "Hanya untuk clustering"
+          "Forward: ubah input, lihat output",
+          "Backward: tentukan output, cari input",
+          "Acak",
+          "Tidak menggunakan model"
         ],
-        answer: 1,
-        explain: "What-if mengubah input, goal seeking mencari input untuk target output."
-      },
-      {
-        question: "Metode penanganan multiple goals yang benar adalah",
-        options: [
-          "k-means, SVM, ANN",
-          "Support, confidence, lift",
-          "Utility theory, goal programming, goals as constraints, points system",
-          "ETL, OLAP, dashboard"
-        ],
-        answer: 2,
-        explain: "Multiple goals dapat ditangani dengan utility theory, goal programming, dsb."
+        answer: 0,
+        explain: "What-if mengubah input untuk melihat dampak output."
       },
       {
         question: "Decision tree dalam decision analysis adalah",
         options: [
+          "Representasi grafis skenario dari decision table",
           "Algoritma clustering",
-          "Representasi grafis dari decision table untuk skenario",
           "Algoritma klasifikasi data mining",
           "Metode evaluasi model"
         ],
-        answer: 1,
-        explain: "Decision tree di sini adalah alat skenario, bukan algoritma klasifikasi."
+        answer: 0,
+        explain: "Di decision analysis, decision tree adalah alat skenario."
       },
       {
-        question: "Simulasi sebaiknya digunakan ketika",
+        question: "Decision under risk menggunakan",
         options: [
-          "Selalu ingin solusi optimal satu langkah",
-          "Data sangat kecil",
-          "Tidak ada model",
-          "Optimisasi numerik tidak memungkinkan"
-        ],
-        answer: 3,
-        explain: "Simulasi cocok saat optimisasi tidak memungkinkan."
-      },
-      {
-        question: "Langkah pertama proses simulasi adalah",
-        options: [
-          "Define problem",
-          "Evaluate results",
-          "Implement solution",
-          "Design experiments"
+          "Expected Value",
+          "Maximin",
+          "Maximax",
+          "ROC/AUC"
         ],
         answer: 0,
-        explain: "Proses simulasi dimulai dari mendefinisikan masalah."
+        explain: "Jika probabilitas diketahui, gunakan expected value."
+      },
+      {
+        question: "Decision under uncertainty biasanya menggunakan",
+        options: [
+          "Maximin atau Maximax",
+          "Expected Value",
+          "ROC/AUC",
+          "Cross validation"
+        ],
+        answer: 0,
+        explain: "Jika probabilitas tidak diketahui, gunakan maximin/maximax."
+      },
+      {
+        question: "Simulasi digunakan ketika",
+        options: [
+          "Optimisasi numerik tidak memungkinkan",
+          "Selalu ingin solusi optimal satu langkah",
+          "Data sangat kecil",
+          "Tidak butuh model"
+        ],
+        answer: 0,
+        explain: "Simulasi dipakai saat optimisasi tidak memungkinkan."
       },
       {
         question: "Monte Carlo simulation menggunakan",
         options: [
-          "Decision tree",
           "Sampling acak dari distribusi probabilitas",
+          "Decision tree",
           "Deterministic output tanpa acak",
           "Pruning"
         ],
-        answer: 1,
-        explain: "Monte Carlo memakai sampling acak untuk mensimulasikan ketidakpastian."
-      },
-      {
-        question: "Discrete event simulation berarti",
-        options: [
-          "Perubahan terjadi terus menerus tanpa event",
-          "Tidak menggunakan waktu",
-          "Perubahan terjadi pada titik waktu tertentu",
-          "Selalu linear"
-        ],
-        answer: 2,
-        explain: "Pada discrete event, perubahan terjadi pada event tertentu."
+        answer: 0,
+        explain: "Monte Carlo memakai sampling acak untuk simulasi."
       },
       {
         question: "Definisi privacy yang tepat adalah",
         options: [
+          "Hak untuk dibiarkan sendiri dan bebas dari gangguan pribadi",
           "Kewajiban membagikan semua data",
-          "Hak untuk dibiarkan sendiri dan bebas dari gangguan pribadi yang tidak wajar",
-          "Kemampuan menyimpan data lebih lama",
-          "Teknik enkripsi database"
+          "Teknik enkripsi",
+          "Kemampuan menyimpan data lebih lama"
         ],
-        answer: 1,
+        answer: 0,
         explain: "Privacy adalah hak individu untuk dibiarkan sendiri."
       },
       {
-        question: "Salah satu aturan pengadilan tentang privasi adalah",
+        question: "Salah satu aturan privasi menyatakan",
         options: [
+          "Hak privasi tidak absolut dan harus seimbang dengan kebutuhan masyarakat",
           "Hak privasi selalu absolut",
-          "Hak privasi harus seimbang dengan kebutuhan masyarakat",
-          "Hak privasi hanya berlaku di perusahaan",
-          "Privasi tidak terkait hukum"
+          "Privasi tidak terkait hukum",
+          "Privasi hanya berlaku di perusahaan"
         ],
-        answer: 1,
-        explain: "Privasi tidak absolut dan harus diseimbangkan dengan kepentingan publik."
+        answer: 0,
+        explain: "Privasi harus diseimbangkan dengan kebutuhan publik."
       },
       {
-        question: "Aturan lain tentang privasi menyatakan bahwa",
+        question: "Aturan privasi lain menyatakan bahwa",
         options: [
-          "Hak publik untuk tahu bisa lebih tinggi dari hak privasi individu",
+          "Hak publik untuk tahu dapat lebih tinggi dari hak privasi individu",
           "Hak publik selalu lebih rendah",
           "Hak publik tidak relevan",
           "Hak privasi tidak ada"
         ],
         answer: 0,
-        explain: "Dalam beberapa kasus, hak publik untuk tahu dapat lebih tinggi."
+        explain: "Dalam beberapa kasus, hak publik untuk tahu lebih tinggi."
       },
       {
-        question: "Contoh isu data governance adalah",
+        question: "Isu implementasi utama intelligent systems adalah",
         options: [
-          "Menentukan apakah proyek dilakukan sendiri atau dengan partner",
-          "Memilih warna tombol",
-          "Menambah jumlah fitur",
-          "Mengganti font presentasi"
+          "Resistensi karyawan dan ketakutan kehilangan pekerjaan",
+          "Mengubah warna dashboard",
+          "Menambah font",
+          "Mengubah nama file"
         ],
         answer: 0,
-        explain: "Data governance mencakup keputusan strategis seperti make-or-buy dan kemitraan."
+        explain: "Resistensi karyawan adalah isu implementasi penting."
       },
       {
-        question: "Pernyataan yang benar tentang pembelajaran dari data adalah",
+        question: "Risiko keamanan pada intelligent systems meningkat karena",
         options: [
-          "Kualitas data menentukan kualitas hasil",
-          "Model selalu benar meski data buruk",
-          "Data tidak perlu dibersihkan",
-          "Hanya ukuran data yang penting"
-        ],
-        answer: 0,
-        explain: "Kualitas data sangat menentukan kualitas insight."
-      },
-      {
-        question: "Risiko keamanan pada intelligent systems sering muncul karena",
-        options: [
-          "Koneksi cloud dan Internet membuka celah keamanan baru",
-          "Cloud selalu bebas risiko",
+          "Koneksi cloud dan Internet membuka celah baru",
+          "Cloud selalu aman",
           "Security tidak perlu dipikirkan",
-          "Robot tidak punya risiko keamanan"
+          "Robot tidak punya risiko"
         ],
         answer: 0,
-        explain: "Konektivitas meningkatkan permukaan serangan dan risiko keamanan."
-      },
-      {
-        question: "Risiko utama workplace analytics berbasis sensor adalah",
-        options: [
-          "Tidak bisa diukur",
-          "Potensi penyalahgunaan untuk memata-matai karyawan",
-          "Tidak ada data",
-          "Selalu meningkatkan privasi"
-        ],
-        answer: 1,
-        explain: "Monitoring berlebihan dapat melanggar privasi dan etika."
-      },
-      {
-        question: "Contoh tindakan yang melanggar etika adalah",
-        options: [
-          "Menggunakan data publik dengan kebijakan jelas",
-          "Menjalankan eksperimen pada pengguna tanpa informed consent",
-          "Memberi opsi opt-out",
-          "Membatasi akses data"
-        ],
-        answer: 1,
-        explain: "Eksperimen tanpa persetujuan yang jelas melanggar etika."
+        explain: "Konektivitas meningkatkan risiko keamanan."
       },
       {
         question: "Prinsip Responsible AI yang bukan termasuk adalah",
         options: [
+          "Profit maximization",
           "Fairness",
           "Transparency",
-          "Accountability",
-          "Profit maximization"
+          "Accountability"
         ],
-        answer: 3,
+        answer: 0,
         explain: "Profit maximization bukan prinsip Responsible AI."
       },
       {
         question: "Fairness dalam Responsible AI berarti",
         options: [
-          "Mengurangi bias dan memperlakukan semua pihak secara adil",
+          "Mengurangi bias dan memperlakukan semua pihak adil",
           "Menghapus dokumentasi",
           "Meningkatkan profit",
           "Menambah noise"
@@ -930,26 +952,15 @@
         explain: "Accountability memastikan ada pemilik tanggung jawab."
       },
       {
-        question: "Set persyaratan model AI yang bertanggung jawab adalah",
+        question: "Persyaratan model AI yang bertanggung jawab adalah",
         options: [
-          "Rahasia, tujuan kabur, tanpa audit",
           "Transparan, tujuan kuantitatif jelas, self-correcting dan audit rutin",
+          "Rahasia, tujuan kabur, tanpa audit",
           "Hanya akurat",
           "Hanya cepat"
         ],
-        answer: 1,
-        explain: "Model perlu transparan, tujuan jelas, dan mekanisme koreksi serta audit."
-      },
-      {
-        question: "Citizen data scientist adalah",
-        options: [
-          "Pengguna bisnis yang belum terlatih penuh tetapi memakai tools analitik",
-          "Hanya ilmuwan data PhD",
-          "Hanya admin database",
-          "Pengguna tanpa akses data"
-        ],
         answer: 0,
-        explain: "Citizen data scientist adalah pengguna bisnis yang memanfaatkan tools analitik."
+        explain: "Model perlu transparan, tujuan jelas, dan ada audit."
       },
       {
         question: "Salah satu aturan dalam 10 commandments of computer ethics adalah",
@@ -963,37 +974,26 @@
         explain: "Salah satu prinsip etika adalah tidak mengintip file orang lain."
       },
       {
-        question: "Pernyataan yang sesuai tentang dampak AI pada pekerjaan adalah",
+        question: "Citizen data scientist adalah",
         options: [
-          "Tidak ada dampak pada pekerjaan",
-          "Akan selalu mengurangi semua jenis pekerjaan",
-          "Perlu retraining dan terjadi pergeseran/polarisasi pekerjaan",
-          "Hanya berdampak pada industri hiburan"
-        ],
-        answer: 2,
-        explain: "Materi menekankan perlunya retraining dan perubahan struktur pekerjaan."
-      },
-      {
-        question: "Pernyataan yang mencerminkan pandangan dystopia adalah",
-        options: [
-          "AI menurunkan kejahatan dan meningkatkan kualitas hidup",
-          "AI membawa risiko besar seperti kehilangan pekerjaan dan bahaya",
-          "AI hanya membantu pekerjaan ringan",
-          "AI tidak berpengaruh"
-        ],
-        answer: 1,
-        explain: "Dystopia menekankan risiko besar dan dampak negatif."
-      },
-      {
-        question: "Isu etika utama pada AI adalah",
-        options: [
-          "Bias, keamanan, dan konsekuensi tak diinginkan",
-          "Hanya soal kecepatan komputasi",
-          "Hanya soal UI",
-          "Hanya soal ukuran dataset"
+          "Pengguna bisnis yang memakai tools analitik tanpa pelatihan penuh",
+          "Hanya ilmuwan data PhD",
+          "Hanya admin database",
+          "Pengguna tanpa akses data"
         ],
         answer: 0,
-        explain: "Isu etika utama mencakup bias, keamanan, dan dampak tak diinginkan."
+        explain: "Citizen data scientist adalah pengguna bisnis yang memanfaatkan tools analitik."
+      },
+      {
+        question: "Pelajaran utama dari Target story adalah",
+        options: [
+          "Privasi dan persetujuan harus diperhatikan ketika menambang data",
+          "Semua promosi harus berbasis AI",
+          "Data mining tidak boleh digunakan",
+          "Tidak perlu transparansi"
+        ],
+        answer: 0,
+        explain: "Target story menekankan pentingnya privasi, consent, dan sensitivitas sosial."
       }
     ];
 
