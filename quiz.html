@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis 50 Soal - Business Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --bg-2: #efe7dc;
+      --ink: #181611;
+      --muted: #5d5a50;
+      --card: #ffffff;
+      --line: #e5ded3;
+      --accent: #0f766e;
+      --accent-2: #d97706;
+      --accent-3: #1d4ed8;
+      --good: #15803d;
+      --bad: #b91c1c;
+      --shadow: 0 18px 40px rgba(30, 26, 18, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 12% -8%, #f9e5be 0%, rgba(249, 229, 190, 0) 65%),
+        radial-gradient(900px 500px at 90% -10%, #c7efe6 0%, rgba(199, 239, 230, 0) 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      padding: 28px 20px 10px;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), #14b8a6);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn.primary:hover {
+      filter: brightness(1.05);
+      color: #fff;
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px 70px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 26px rgba(24, 22, 17, 0.08);
+    }
+
+    .panel-title {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+      gap: 8px;
+    }
+
+    .nav-btn {
+      border: 1px solid var(--line);
+      background: #fbfaf7;
+      border-radius: 8px;
+      padding: 8px 0;
+      font-size: 12px;
+      font-family: "JetBrains Mono", monospace;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+    }
+
+    .nav-btn.current {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
+    }
+
+    .nav-btn.answered.correct {
+      background: #e7f6ef;
+      border-color: #16a34a;
+      color: #166534;
+    }
+
+    .nav-btn.answered.incorrect {
+      background: #fdecec;
+      border-color: #ef4444;
+      color: #9f1239;
+    }
+
+    .legend {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.current { background: var(--accent); }
+    .dot.correct { background: #16a34a; }
+    .dot.incorrect { background: #ef4444; }
+    .dot.unanswered { background: #d1c7b9; }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .quiz-question {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      margin-bottom: 14px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--line);
+      background: #fcfbf8;
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 16px rgba(15, 118, 110, 0.12);
+    }
+
+    .opt-btn:disabled {
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .opt-btn.correct {
+      border-color: #22c55e;
+      background: #ecfdf3;
+    }
+
+    .opt-btn.wrong {
+      border-color: #f87171;
+      background: #fef2f2;
+    }
+
+    .opt-btn.selected {
+      outline: 2px solid rgba(29, 78, 216, 0.2);
+    }
+
+    .opt-label {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #f2ede4;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .opt-text {
+      flex: 1;
+    }
+
+    .explain {
+      border-left: 4px solid var(--accent-3);
+      background: #f3f6ff;
+      padding: 12px 14px;
+      border-radius: 12px;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .explain.hidden {
+      display: none;
+    }
+
+    .explain-title {
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn.ghost {
+      background: transparent;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div>
+        <div class="hero-kicker">Latihan Kuis</div>
+        <h1>MCQ 50 Soal Business Intelligence</h1>
+        <p>Latihan ini menampilkan satu soal per halaman. Klik salah satu pilihan untuk langsung melihat jawaban benar dan alasannya.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="index.html">Kembali ke rangkuman</a>
+        <button class="btn primary" id="resetTop">Reset latihan</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-title">Navigasi Soal</div>
+        <div class="nav-grid" id="navGrid"></div>
+        <div class="legend">
+          <div class="legend-item"><span class="dot current"></span> Soal aktif</div>
+          <div class="legend-item"><span class="dot correct"></span> Jawaban benar</div>
+          <div class="legend-item"><span class="dot incorrect"></span> Jawaban salah</div>
+          <div class="legend-item"><span class="dot unanswered"></span> Belum dijawab</div>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <div class="quiz-meta">
+          <div id="progress">Soal 1 dari 50</div>
+          <div id="status">Belum dijawab</div>
+        </div>
+        <h2 class="quiz-question" id="question"></h2>
+        <div class="options" id="options"></div>
+        <div class="explain hidden" id="explain" role="status" aria-live="polite"></div>
+        <div class="quiz-actions">
+          <button class="btn ghost" id="prevBtn">Sebelumnya</button>
+          <button class="btn" id="nextBtn">Berikutnya</button>
+          <button class="btn" id="resetBtn">Reset</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        question: "Definisi Data Mining menurut Fayyad et al. (1996) paling tepat adalah",
+        options: [
+          "Proses nontrivial mengekstraksi pengetahuan yang valid, novel, potentially useful, dan understandable dari data besar",
+          "Proses menyimpan data ke data warehouse",
+          "Proses membuat dashboard dari data transaksi",
+          "Proses menghapus data duplikat"
+        ],
+        answer: 0,
+        explain: "Data mining menekankan ekstraksi pengetahuan yang valid, baru, berguna, dan bisa dipahami dari data besar, bukan sekadar penyimpanan atau visualisasi."
+      },
+      {
+        question: "Kata kunci nontrivial dalam definisi Data Mining berarti",
+        options: [
+          "Dapat dilakukan manual dengan kalkulasi sederhana",
+          "Membutuhkan algoritma kompleks dan tidak bisa dilakukan manual",
+          "Tidak memerlukan data besar",
+          "Hanya untuk visualisasi"
+        ],
+        answer: 1,
+        explain: "Nontrivial berarti prosesnya tidak sederhana dan memerlukan algoritma yang tidak bisa dikerjakan manual."
+      },
+      {
+        question: "Makna valid pada definisi Data Mining adalah",
+        options: [
+          "Pola harus baru",
+          "Pola harus akurat dan dapat dipercaya, divalidasi dengan data uji",
+          "Pola harus mudah divisualkan",
+          "Pola harus menguntungkan"
+        ],
+        answer: 1,
+        explain: "Valid berarti pola harus akurat dan dapat dipercaya, biasanya diuji pada data yang belum pernah dilihat."
+      },
+      {
+        question: "Makna novel pada definisi Data Mining adalah",
+        options: [
+          "Pola sudah diketahui",
+          "Pengetahuan baru yang belum diketahui sebelumnya",
+          "Pola mudah dipahami",
+          "Pola hanya untuk eksperimen"
+        ],
+        answer: 1,
+        explain: "Novel berarti pengetahuan yang dihasilkan harus baru, bukan sekadar mengulang hal yang sudah diketahui."
+      },
+      {
+        question: "Makna understandable pada definisi Data Mining adalah",
+        options: [
+          "Tidak perlu dijelaskan pada manusia",
+          "Hasil dapat dipahami oleh pengambil keputusan",
+          "Hanya dapat dipahami oleh mesin",
+          "Selalu berupa grafik"
+        ],
+        answer: 1,
+        explain: "Understandable menekankan bahwa hasil data mining harus dapat dipahami manusia, terutama pengambil keputusan."
+      },
+      {
+        question: "Mengapa istilah Data Mining disebut misnomer",
+        options: [
+          "Yang digali bukan data, tetapi knowledge atau pola tersembunyi",
+          "Karena data tidak digunakan",
+          "Karena hanya untuk data kecil",
+          "Karena selalu memakai database baru"
+        ],
+        answer: 0,
+        explain: "Istilah ini dianggap misnomer karena yang digali sebenarnya adalah pengetahuan atau pola dalam data, bukan datanya."
+      },
+      {
+        question: "Manakah yang BUKAN faktor pendorong data mining",
+        options: [
+          "Konsolidasi data ke data warehouse",
+          "Peningkatan kemampuan komputasi dan biaya turun",
+          "Konversi informasi ke bentuk digital",
+          "Kewajiban memakai database terpisah khusus"
+        ],
+        answer: 3,
+        explain: "Kemajuan teknologi membuat database khusus tidak lagi diperlukan, sehingga itu bukan faktor pendorong."
+      },
+      {
+        question: "Langkah ke-3 CRISP-DM adalah",
+        options: [
+          "Business Understanding",
+          "Data Understanding",
+          "Data Preparation",
+          "Deployment"
+        ],
+        answer: 2,
+        explain: "Urutan CRISP-DM adalah Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment."
+      },
+      {
+        question: "SEMMA adalah singkatan dari",
+        options: [
+          "Sample, Explore, Modify, Model, Assess",
+          "Search, Extract, Merge, Model, Analyze",
+          "Select, Encode, Mine, Manage, Analyze",
+          "Source, Explore, Map, Model, Apply"
+        ],
+        answer: 0,
+        explain: "SEMMA dikembangkan SAS dan berarti Sample, Explore, Modify, Model, Assess."
+      },
+      {
+        question: "Urutan KDD yang benar setelah Preprocessing adalah",
+        options: [
+          "Selection",
+          "Transformation",
+          "Evaluation",
+          "Deployment"
+        ],
+        answer: 1,
+        explain: "KDD: Selection, Preprocessing, Transformation, Data Mining, Interpretation/Evaluation."
+      },
+      {
+        question: "Perbedaan utama predictive task dan descriptive task adalah",
+        options: [
+          "Predictive tidak punya target, descriptive punya target",
+          "Predictive memiliki target variable, descriptive tidak",
+          "Keduanya selalu memakai target variable",
+          "Descriptive selalu lebih akurat"
+        ],
+        answer: 1,
+        explain: "Predictive task memprediksi target variable, sedangkan descriptive task tidak memiliki target."
+      },
+      {
+        question: "Classification termasuk predictive task karena",
+        options: [
+          "Target berupa angka kontinu",
+          "Target berupa kategori",
+          "Tidak ada target",
+          "Hanya untuk time series"
+        ],
+        answer: 1,
+        explain: "Classification memprediksi label atau kategori, jadi targetnya bersifat kategoris."
+      },
+      {
+        question: "Regression digunakan ketika target",
+        options: [
+          "Kategoris",
+          "Numerik kontinu",
+          "Tidak diketahui sama sekali",
+          "Berbentuk teks panjang"
+        ],
+        answer: 1,
+        explain: "Regression dipakai untuk memprediksi nilai numerik kontinu."
+      },
+      {
+        question: "Clustering merupakan",
+        options: [
+          "Predictive dengan target",
+          "Descriptive tanpa target, mengelompokkan data berdasarkan kemiripan",
+          "Metode optimisasi",
+          "Metode evaluasi"
+        ],
+        answer: 1,
+        explain: "Clustering adalah descriptive task yang mencari grup alami tanpa target variable."
+      },
+      {
+        question: "Kriteria splitting yang digunakan CART pada decision tree adalah",
+        options: [
+          "Information Gain",
+          "Gini Impurity",
+          "Chi-square",
+          "Lift"
+        ],
+        answer: 1,
+        explain: "CART menggunakan Gini Impurity sebagai kriteria pemisahan."
+      },
+      {
+        question: "Manakah yang BUKAN stopping criterion decision tree",
+        options: [
+          "Semua data di node sudah satu kelas",
+          "Tidak ada atribut lagi",
+          "Node terlalu kecil",
+          "Memilih atribut dengan information gain tertinggi"
+        ],
+        answer: 3,
+        explain: "Memilih atribut dengan information gain tertinggi adalah kriteria pemisahan, bukan kriteria berhenti."
+      },
+      {
+        question: "Perbedaan pre-pruning dan post-pruning adalah",
+        options: [
+          "Pre-pruning membangun pohon penuh lalu dipangkas",
+          "Post-pruning menghentikan sebelum pohon selesai",
+          "Pre-pruning menghentikan lebih awal, post-pruning memangkas setelah pohon penuh",
+          "Keduanya sama"
+        ],
+        answer: 2,
+        explain: "Pre-pruning menghentikan pembentukan pohon lebih awal, sedangkan post-pruning memangkas setelah pohon lengkap."
+      },
+      {
+        question: "Pada ANN, penyesuaian bobot selama training dilakukan melalui",
+        options: [
+          "Cross validation",
+          "Backpropagation",
+          "Gini index",
+          "k-means"
+        ],
+        answer: 1,
+        explain: "Backpropagation digunakan untuk menyesuaikan bobot agar error berkurang."
+      },
+      {
+        question: "Kelemahan utama ANN yang disebut di materi adalah",
+        options: [
+          "Tidak bisa menangani data besar",
+          "Black box, sulit diinterpretasi",
+          "Tidak bisa non-linear",
+          "Tidak akurat"
+        ],
+        answer: 1,
+        explain: "ANN sering disebut black box karena sulit dijelaskan secara interpretatif."
+      },
+      {
+        question: "SVM mencari",
+        options: [
+          "Hyperplane dengan margin terlebar",
+          "Centroid terbaik",
+          "Aturan asosiasi",
+          "Model linier sederhana tanpa margin"
+        ],
+        answer: 0,
+        explain: "SVM bertujuan memaksimalkan margin antar kelas dengan hyperplane terbaik."
+      },
+      {
+        question: "Support vectors adalah",
+        options: [
+          "Data paling jauh dari hyperplane",
+          "Data paling dekat dengan hyperplane",
+          "Nilai rata-rata cluster",
+          "Output model"
+        ],
+        answer: 1,
+        explain: "Support vectors adalah titik data yang paling dekat dengan hyperplane pemisah."
+      },
+      {
+        question: "Langkah ke-2 pada k-means adalah",
+        options: [
+          "Menentukan k dan centroid awal",
+          "Mengassign tiap titik ke centroid terdekat",
+          "Menghitung ulang centroid baru",
+          "Menentukan stopping criteria"
+        ],
+        answer: 1,
+        explain: "Setelah menentukan k dan centroid awal, langkah berikutnya adalah assign setiap titik ke centroid terdekat."
+      },
+      {
+        question: "Tantangan utama k-means adalah",
+        options: [
+          "Menentukan nilai k optimal",
+          "Tidak bisa menangani data numerik",
+          "Tidak membutuhkan centroid",
+          "Selalu supervised"
+        ],
+        answer: 0,
+        explain: "Menentukan k yang optimal adalah tantangan utama, biasanya memakai elbow method atau silhouette."
+      },
+      {
+        question: "Metrik utama association rule mining adalah",
+        options: [
+          "Support, Confidence, Lift",
+          "Accuracy, Recall, F1",
+          "RMSE, MAE, MAPE",
+          "Gini, Entropy, Chi-square"
+        ],
+        answer: 0,
+        explain: "Association rule mining menggunakan support, confidence, dan lift."
+      },
+      {
+        question: "Algoritma utama untuk association rules pada materi adalah",
+        options: [
+          "Apriori",
+          "CART",
+          "KNN",
+          "Backpropagation"
+        ],
+        answer: 0,
+        explain: "Apriori adalah algoritma klasik untuk association rule mining."
+      },
+      {
+        question: "Pada studi film Hollywood, model terbaik overall adalah",
+        options: [
+          "CART",
+          "ANN",
+          "Fusion (Average)",
+          "Random Forest"
+        ],
+        answer: 2,
+        explain: "Fusion (average) menjadi yang terbaik overall dengan Bingo 56.07% dan 1-Away 90.75%."
+      },
+      {
+        question: "Manakah yang BUKAN kriteria evaluasi model data mining",
+        options: [
+          "Predictive accuracy",
+          "Speed",
+          "Interpretability",
+          "Colorfulness"
+        ],
+        answer: 3,
+        explain: "Colorfulness bukan metrik evaluasi model; yang digunakan adalah accuracy, speed, robustness, scalability, dan interpretability."
+      },
+      {
+        question: "k-fold cross validation berarti",
+        options: [
+          "Data dibagi dua: train dan test sekali saja",
+          "Model dilatih k kali dan setiap fold menjadi test set tepat sekali",
+          "Hanya memakai data training tanpa test",
+          "Data uji dipakai untuk training"
+        ],
+        answer: 1,
+        explain: "Dalam k-fold CV, data dibagi k bagian dan setiap bagian dipakai sebagai test tepat sekali."
+      },
+      {
+        question: "Nilai AUC 0.5 pada ROC berarti",
+        options: [
+          "Klasifikasi sempurna",
+          "Lebih buruk dari acak",
+          "Sama dengan tebakan acak",
+          "Akurasi 100%"
+        ],
+        answer: 2,
+        explain: "AUC 0.5 menunjukkan performa setara dengan tebakan acak."
+      },
+      {
+        question: "Jumlah film pada dataset Hollywood adalah",
+        options: [
+          "2,632",
+          "632",
+          "26,320",
+          "200"
+        ],
+        answer: 0,
+        explain: "Dataset studi film berisi 2,632 film (1998-2006)."
+      },
+      {
+        question: "Jumlah kelas output pada studi film Hollywood adalah",
+        options: [
+          "5",
+          "7",
+          "9",
+          "12"
+        ],
+        answer: 2,
+        explain: "Output diklasifikasikan ke 9 kelas dari flop sampai blockbuster."
+      },
+      {
+        question: "Jumlah variabel independen pada studi film Hollywood adalah",
+        options: [
+          "5",
+          "7",
+          "9",
+          "12"
+        ],
+        answer: 1,
+        explain: "Studi film memakai 7 variabel independen sebagai predictor."
+      },
+      {
+        question: "Best individual model (Bingo) pada studi film adalah",
+        options: [
+          "CART 40.46%",
+          "SVM 55.49%",
+          "Boosted Tree 54.05%",
+          "Random Forest 54.62%"
+        ],
+        answer: 1,
+        explain: "SVM adalah best individual model dengan Bingo 55.49%."
+      },
+      {
+        question: "Decision tree sebagai representasi skenario keputusan (bukan algoritma klasifikasi) ada di",
+        options: [
+          "Chapter 5",
+          "Chapter 8",
+          "Chapter 11",
+          "Cheat sheet saja"
+        ],
+        answer: 1,
+        explain: "Decision tree sebagai skenario keputusan dibahas pada Chapter 8 (decision analysis)."
+      },
+      {
+        question: "Prescriptive analytics menjawab pertanyaan",
+        options: [
+          "What happened",
+          "What will happen",
+          "What should we do",
+          "Why did it happen"
+        ],
+        answer: 2,
+        explain: "Prescriptive analytics fokus pada rekomendasi tindakan optimal: what should we do."
+      },
+      {
+        question: "Linear Programming mengharuskan",
+        options: [
+          "Semua hubungan matematis linear",
+          "Data harus kategori",
+          "Selalu memakai neural network",
+          "Hanya cocok untuk data kecil"
+        ],
+        answer: 0,
+        explain: "LP hanya valid jika semua hubungan matematis bersifat linear."
+      },
+      {
+        question: "Decision variable dalam LP adalah",
+        options: [
+          "Variabel yang dikontrol pengambil keputusan",
+          "Variabel hasil yang tidak bisa diubah",
+          "Variabel acak",
+          "Variabel yang selalu negatif"
+        ],
+        answer: 0,
+        explain: "Decision variable adalah variabel yang nilainya ditentukan pengambil keputusan."
+      },
+      {
+        question: "Slack variable muncul pada constraint tipe",
+        options: [
+          ">= dan berarti kelebihan produksi",
+          "<= dan berarti kapasitas tidak terpakai",
+          "= dan berarti deviasi",
+          "Semua tipe sama"
+        ],
+        answer: 1,
+        explain: "Slack muncul pada constraint <= dan menunjukkan sumber daya yang tidak terpakai."
+      },
+      {
+        question: "Surplus variable muncul pada constraint tipe",
+        options: [
+          ">= dan berarti produksi melebihi minimum",
+          "<= dan berarti kapasitas tidak terpakai",
+          "= dan berarti error",
+          "Hanya pada objective function"
+        ],
+        answer: 0,
+        explain: "Surplus muncul pada constraint >= dan menunjukkan kelebihan di atas batas minimum."
+      },
+      {
+        question: "Objective function MBI Corporation adalah",
+        options: [
+          "Max Z = 300X1 + 500X2",
+          "Max Z = 8,000X1 + 12,000X2",
+          "Min Z = 8,000X1 + 12,000X2",
+          "Max Z = 10,000X1 + 15,000X2"
+        ],
+        answer: 1,
+        explain: "Dalam kasus MBI, objective function adalah Max Z = 8,000X1 + 12,000X2."
+      },
+      {
+        question: "Metode Solver yang digunakan untuk LP pada materi adalah",
+        options: [
+          "Gradient Descent",
+          "Simplex LP",
+          "k-means",
+          "Monte Carlo"
+        ],
+        answer: 1,
+        explain: "Excel Solver menggunakan metode Simplex LP untuk menyelesaikan model LP."
+      },
+      {
+        question: "Automatic sensitivity analysis",
+        options: [
+          "Dilakukan manual dengan banyak perubahan sekaligus",
+          "Dilakukan otomatis oleh software dan hanya satu perubahan sekaligus",
+          "Selalu memakai goal seeking",
+          "Tidak tersedia di Solver"
+        ],
+        answer: 1,
+        explain: "Automatic sensitivity dilakukan otomatis dan biasanya hanya mengubah satu parameter pada satu waktu."
+      },
+      {
+        question: "Goal seeking bersifat",
+        options: [
+          "Forward: ubah input, lihat output",
+          "Backward: tentukan output, cari input",
+          "Random: pilih input acak",
+          "Tidak memakai model"
+        ],
+        answer: 1,
+        explain: "Goal seeking menentukan output target terlebih dulu lalu mencari input yang diperlukan."
+      },
+      {
+        question: "Metode penanganan multiple goals yang BUKAN termasuk materi adalah",
+        options: [
+          "Utility theory",
+          "Goal programming",
+          "Points system",
+          "k-means clustering"
+        ],
+        answer: 3,
+        explain: "k-means adalah teknik clustering, bukan metode penanganan multiple goals."
+      },
+      {
+        question: "Decision table terdiri dari",
+        options: [
+          "Decision variables, uncontrollable variables, result variables",
+          "Decision tree, confusion matrix, ROC",
+          "Input layer, hidden layer, output layer",
+          "Support, confidence, lift"
+        ],
+        answer: 0,
+        explain: "Decision table berisi alternatif keputusan, state of nature, dan outcome."
+      },
+      {
+        question: "Decision under risk ditangani dengan",
+        options: [
+          "Expected Value karena probabilitas diketahui",
+          "Optimistic maximax",
+          "Pessimistic maximin",
+          "Tidak memakai probabilitas"
+        ],
+        answer: 0,
+        explain: "Pada risk, probabilitas diketahui sehingga digunakan Expected Value."
+      },
+      {
+        question: "Optimistic (maximax) memilih",
+        options: [
+          "Best of worst",
+          "Best of best",
+          "Average of all",
+          "Median outcome"
+        ],
+        answer: 1,
+        explain: "Maximax mengambil hasil terbaik dari semua alternatif (best of best)."
+      },
+      {
+        question: "Simulasi menurut materi adalah",
+        options: [
+          "Prescriptive yang mencari solusi optimal otomatis",
+          "Descriptive untuk eksperimen ketika optimisasi tidak memungkinkan",
+          "Metode klasifikasi supervised",
+          "Teknik normalisasi data"
+        ],
+        answer: 1,
+        explain: "Simulasi bersifat deskriptif dan dipakai saat optimisasi tidak memungkinkan."
+      },
+      {
+        question: "Monte Carlo simulation menggunakan",
+        options: [
+          "Deterministic output tanpa random",
+          "Bilangan acak dan distribusi probabilitas",
+          "Aturan asosiasi",
+          "Grafik ROC"
+        ],
+        answer: 1,
+        explain: "Monte Carlo memakai bilangan acak untuk mensimulasikan distribusi probabilitas."
+      },
+      {
+        question: "Prinsip Responsible AI yang menekankan explainability adalah",
+        options: [
+          "Fairness",
+          "Transparency",
+          "Inclusiveness",
+          "Accountability"
+        ],
+        answer: 1,
+        explain: "Transparency menekankan agar sistem dapat dijelaskan dan dipahami."
+      }
+    ];
+
+    const state = {
+      current: 0,
+      answers: Array(questions.length).fill(null)
+    };
+
+    const navGrid = document.getElementById("navGrid");
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const explainEl = document.getElementById("explain");
+    const progressEl = document.getElementById("progress");
+    const statusEl = document.getElementById("status");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const resetTop = document.getElementById("resetTop");
+
+    const navButtons = [];
+
+    function buildNav() {
+      questions.forEach((_, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "nav-btn";
+        btn.textContent = index + 1;
+        btn.addEventListener("click", () => {
+          state.current = index;
+          render();
+        });
+        navGrid.appendChild(btn);
+        navButtons.push(btn);
+      });
+    }
+
+    function getLabel(index) {
+      return String.fromCharCode(65 + index);
+    }
+
+    function updateNavGrid() {
+      navButtons.forEach((btn, index) => {
+        btn.className = "nav-btn";
+        if (index === state.current) {
+          btn.classList.add("current");
+        }
+        const answer = state.answers[index];
+        if (answer !== null) {
+          btn.classList.add("answered");
+          const isCorrect = answer === questions[index].answer;
+          btn.classList.add(isCorrect ? "correct" : "incorrect");
+        }
+      });
+    }
+
+    function updateExplain() {
+      const currentAnswer = state.answers[state.current];
+      if (currentAnswer === null) {
+        explainEl.classList.add("hidden");
+        explainEl.innerHTML = "";
+        statusEl.textContent = "Belum dijawab";
+        return;
+      }
+
+      const q = questions[state.current];
+      const correctLabel = getLabel(q.answer);
+      const isCorrect = currentAnswer === q.answer;
+      statusEl.textContent = isCorrect ? "Jawabanmu benar" : "Jawabanmu belum benar";
+
+      explainEl.classList.remove("hidden");
+      explainEl.innerHTML = `
+        <div class="explain-title">${isCorrect ? "Jawabanmu benar." : "Jawabanmu belum benar."}</div>
+        <div>Jawaban benar: ${correctLabel}. ${q.options[q.answer]}</div>
+        <div>${q.explain}</div>
+      `;
+    }
+
+    function renderOptions() {
+      optionsEl.innerHTML = "";
+      const q = questions[state.current];
+      const currentAnswer = state.answers[state.current];
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt-btn";
+        btn.innerHTML = `<span class="opt-label">${getLabel(index)}</span><span class="opt-text">${option}</span>`;
+
+        if (currentAnswer === null) {
+          btn.addEventListener("click", () => selectOption(index));
+        } else {
+          btn.disabled = true;
+          if (index === q.answer) {
+            btn.classList.add("correct");
+          }
+          if (index === currentAnswer && index !== q.answer) {
+            btn.classList.add("wrong");
+          }
+          if (index === currentAnswer) {
+            btn.classList.add("selected");
+          }
+        }
+
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function render() {
+      const q = questions[state.current];
+      questionEl.textContent = q.question;
+      progressEl.textContent = `Soal ${state.current + 1} dari ${questions.length}`;
+      prevBtn.disabled = state.current === 0;
+      nextBtn.disabled = state.current === questions.length - 1;
+      renderOptions();
+      updateExplain();
+      updateNavGrid();
+    }
+
+    function selectOption(index) {
+      if (state.answers[state.current] !== null) {
+        return;
+      }
+      state.answers[state.current] = index;
+      render();
+    }
+
+    function resetQuiz() {
+      state.current = 0;
+      state.answers = Array(questions.length).fill(null);
+      render();
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (state.current > 0) {
+        state.current -= 1;
+        render();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (state.current < questions.length - 1) {
+        state.current += 1;
+        render();
+      }
+    });
+
+    resetBtn.addEventListener("click", resetQuiz);
+    resetTop.addEventListener("click", resetQuiz);
+
+    buildNav();
+    render();
+  </script>
+</body>
+</html>

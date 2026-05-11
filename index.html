@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 FINAL BOSS RANGKUMAN KUIS — BI Analytics</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+:root{--bg:#0c0e14;--surface:#13161f;--surface2:#1a1e2e;--surface3:#20253a;--border:#2a2f45;--accent1:#f5c842;--accent2:#4fc3f7;--accent3:#a78bfa;--accent4:#34d399;--accent5:#f87171;--text:#e8eaf6;--muted:#8892b0;--heading:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;font-size:15px;line-height:1.8;}
+.topnav{position:sticky;top:0;z-index:100;background:rgba(12,14,20,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;padding:0 20px;overflow-x:auto;}
+.topnav button{flex-shrink:0;background:none;border:none;padding:13px 16px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.topnav button:hover{color:var(--text);}
+.topnav button.active{color:var(--accent1);border-bottom-color:var(--accent1);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+#searchInput{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;width:180px;outline:none;}
+#searchInput:focus{border-color:var(--accent1);}
+#searchCount{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.progress-bar{height:3px;background:var(--border);position:sticky;top:44px;z-index:99;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));width:0%;transition:width .1s;}
+.hero{background:linear-gradient(135deg,#0c0e14 0%,#1a1230 50%,#0c0e14 100%);border-bottom:2px solid var(--accent1);padding:56px 40px 36px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,200,66,0.12) 0%,transparent 70%);}
+.hero-badge{display:inline-block;background:var(--accent1);color:#000;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;border-radius:2px;margin-bottom:18px;position:relative;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.4rem);font-weight:900;color:var(--heading);line-height:1.15;margin-bottom:10px;position:relative;}
+.hero h1 span{color:var(--accent1);}
+.hero-sub{font-family:'IBM Plex Mono',monospace;color:var(--muted);font-size:12px;letter-spacing:1px;position:relative;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:22px;position:relative;}
+.pill{padding:5px 14px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;border:1px solid;cursor:pointer;transition:all .2s;}
+.pill:hover{transform:translateY(-2px);}
+.p-gold{border-color:var(--accent1);color:var(--accent1);}
+.p-gold:hover{background:rgba(245,200,66,0.1);}
+.p-blue{border-color:var(--accent2);color:var(--accent2);}
+.p-blue:hover{background:rgba(79,195,247,0.1);}
+.p-purple{border-color:var(--accent3);color:var(--accent3);}
+.p-purple:hover{background:rgba(167,139,250,0.1);}
+.p-green{border-color:var(--accent4);color:var(--accent4);}
+.p-green:hover{background:rgba(52,211,153,0.1);}
+.container{max-width:980px;margin:0 auto;padding:44px 22px 90px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.chapter{margin-top:44px;border-left:4px solid;padding-left:22px;}
+.ch1{border-color:var(--accent1);}
+.ch2{border-color:var(--accent2);}
+.ch3{border-color:var(--accent3);}
+.ch4{border-color:var(--accent4);}
+.chapter-label{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;}
+.l1{color:var(--accent1);}
+.l2{color:var(--accent2);}
+.l3{color:var(--accent3);}
+.l4{color:var(--accent4);}
+.chapter h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--heading);margin-bottom:6px;}
+.chapter-desc{color:var(--muted);font-size:13.5px;margin-bottom:24px;}
+.section{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:26px 30px;margin-bottom:18px;}
+.section h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--heading);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:2px 7px;color:var(--muted);}
+.acc{border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;cursor:pointer;background:var(--surface2);transition:background .2s;user-select:none;}
+.acc-h:hover{background:var(--surface3);}
+.acc-title{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px;}
+.acc-icon{font-size:16px;transition:transform .3s;color:var(--muted);}
+.acc.open .acc-icon{transform:rotate(45deg);color:var(--accent1);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.acc.open .acc-body{max-height:3000px;}
+.acc-inner{padding:18px 20px;background:var(--surface);border-top:1px solid var(--border);}
+.def{background:var(--surface2);border-left:3px solid var(--accent1);border-radius:0 6px 6px 0;padding:13px 16px;margin:12px 0;color:#c8cfe0;font-size:14px;}
+.def strong{color:var(--accent1);}
+.def-b{border-left-color:var(--accent2);}
+.def-b strong{color:var(--accent2);}
+.def-g{border-left-color:var(--accent4);}
+.def-g strong{color:var(--accent4);}
+.def-p{border-left-color:var(--accent3);}
+.def-p strong{color:var(--accent3);}
+.def-r{border-left-color:var(--accent5);}
+.def-r strong{color:var(--accent5);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+@media(max-width:600px){.grid2{grid-template-columns:1fr;}}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0;}
+.card{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:16px 18px;}
+.card-t{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;}
+.t1{color:var(--accent1);}
+.t2{color:var(--accent2);}
+.t3{color:var(--accent3);}
+.t4{color:var(--accent4);}
+.t5{color:var(--accent5);}
+.t6{color:#fb923c;}
+.card p,.card li{font-size:13.5px;color:#b0b8d0;}
+.card ul{padding-left:16px;}
+.card li{margin-bottom:4px;}
+.pc{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;border-top:3px solid;}
+.pc .icon{font-size:2rem;margin-bottom:6px;}
+.pc .pname{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pc .pdef{font-size:13px;color:#b0b8d0;margin-bottom:7px;}
+.pc .pex{font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:7px;margin-top:7px;}
+.pc .pex strong{color:var(--text);}
+.step-flow{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;}
+.step{flex:1;min-width:110px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 10px;text-align:center;position:relative;cursor:pointer;transition:all .2s;}
+.step:hover{background:var(--surface3);transform:translateY(-2px);}
+.step-n{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700;color:var(--accent1);margin-bottom:3px;}
+.step-name{font-size:11.5px;font-weight:600;color:var(--text);}
+.step-desc{font-size:10.5px;color:var(--muted);margin-top:3px;}
+.tip{display:none;position:absolute;bottom:calc(100%+8px);left:50%;transform:translateX(-50%);background:var(--surface3);border:1px solid var(--border);border-radius:6px;padding:10px 13px;font-size:12px;color:var(--text);width:210px;z-index:20;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.step:hover .tip{display:block;}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
+thead tr{background:var(--surface2);}
+th{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border);}
+td{padding:8px 13px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.hi{color:var(--accent4);font-weight:600;}
+.warn{color:var(--accent1);}
+.bad{color:var(--accent5);}
+.best{color:var(--accent4);font-weight:700;}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 7px;border-radius:3px;margin:2px;}
+.tg{background:rgba(245,200,66,0.15);color:var(--accent1);border:1px solid rgba(245,200,66,0.3);}
+.tb{background:rgba(79,195,247,0.12);color:var(--accent2);border:1px solid rgba(79,195,247,0.3);}
+.tv{background:rgba(52,211,153,0.12);color:var(--accent4);border:1px solid rgba(52,211,153,0.3);}
+.tp{background:rgba(167,139,250,0.12);color:var(--accent3);border:1px solid rgba(167,139,250,0.3);}
+.tr{background:rgba(248,113,113,0.12);color:var(--accent5);border:1px solid rgba(248,113,113,0.3);}
+.fw{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin:12px 0;}
+.fi{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;}
+.fq{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:var(--accent1);margin-bottom:3px;}
+.fa{font-size:12px;color:#b0b8d0;}
+.cmd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:9px;margin:12px 0;}
+.cmd{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start;}
+.cmd-n{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;color:var(--accent3);min-width:30px;}
+.cmd-t{font-size:13px;font-weight:600;color:var(--heading);margin-bottom:2px;}
+.cmd-d{font-size:12.5px;color:#b0b8d0;}
+.formula{background:var(--surface3);border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--accent2);margin:10px 0;text-align:center;}
+ul.s,ol.s{padding-left:0;list-style:none;}
+ul.s li,ol.s li{padding-left:20px;position:relative;margin-bottom:7px;color:#c8cfe0;font-size:13.5px;}
+ul.s li::before{content:'▸';position:absolute;left:0;color:var(--accent1);}
+ol.s{counter-reset:item;}
+ol.s li{counter-increment:item;padding-left:34px;}
+ol.s li::before{content:counter(item);position:absolute;left:0;top:2px;width:22px;height:22px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;color:var(--accent1);display:flex;align-items:center;justify-content:center;}
+hr.d{border:none;border-top:1px solid var(--border);margin:20px 0;}
+strong{color:var(--heading);}
+em{color:var(--accent2);font-style:normal;}
+.highlight{background:rgba(245,200,66,0.3);color:#000;border-radius:2px;}
+.quiz-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:30px;text-align:center;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.quiz-card:hover{border-color:var(--accent1);box-shadow:0 0 20px rgba(245,200,66,0.1);}
+.quiz-q{font-size:1.05rem;color:var(--heading);font-family:'Playfair Display',serif;font-weight:700;margin-bottom:10px;}
+.quiz-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.quiz-a{display:none;font-size:13.5px;color:var(--accent4);border-top:1px solid var(--border);margin-top:12px;padding-top:12px;width:100%;text-align:left;}
+.quiz-card.flipped .quiz-a{display:block;}
+.quiz-nav{display:flex;gap:10px;justify-content:center;margin-top:14px;align-items:center;flex-wrap:wrap;}
+.quiz-nav button{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 18px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;transition:all .2s;}
+.quiz-nav button:hover{border-color:var(--accent1);color:var(--accent1);}
+.q-counter{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+footer{text-align:center;padding:30px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">KUIS SENIN · 11 MEI 2026 · 12.00–12.45 WIB · LURING LAB</div>
+  <h1>RANGKUMAN <span>FINAL BOSS</span><br>Business Intelligence & Analytics</h1>
+  <p class="hero-sub">Inteligensi Bisnis · FASILKOM UI · Genap 2025/2026 · CSIE604271</p>
+  <div class="pills">
+    <div class="pill p-gold" onclick="switchTab('ch5')">📊 Ch.5 · Data Mining</div>
+    <div class="pill p-blue" onclick="switchTab('ch8')">⚙️ Ch.8 · Prescriptive</div>
+    <div class="pill p-purple" onclick="switchTab('ch11')">🛡️ Ch.11 · Ethical</div>
+    <div class="pill p-green" onclick="switchTab('cheat')">⚡ Cheat Sheet</div>
+    <div class="pill p-purple" onclick="switchTab('quiz')">🧠 Flashcard</div>
+    <div class="pill p-blue" onclick="window.location.href='quiz.html'">MCQ 50 Soal</div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+
+<nav class="topnav">
+  <button class="active" onclick="switchTab('ch5')" id="btn-ch5">📊 Data Mining</button>
+  <button onclick="switchTab('ch8')" id="btn-ch8">⚙️ Prescriptive</button>
+  <button onclick="switchTab('ch11')" id="btn-ch11">🛡️ Ethical</button>
+  <button onclick="switchTab('cheat')" id="btn-cheat">⚡ Cheat Sheet</button>
+  <button onclick="switchTab('quiz')" id="btn-quiz">🧠 Flashcard</button>
+  <button onclick="window.location.href='quiz.html'" id="btn-mcq">MCQ 50</button>
+  <div class="nav-right">
+    <input id="searchInput" placeholder="🔍 Cari konsep..." oninput="doSearch(this.value)">
+    <span id="searchCount"></span>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ════════════════ TAB CH5 ════════════════ -->
+<div id="tab-ch5" class="tab-content active">
+<div class="chapter ch1">
+  <div class="chapter-label l1">Chapter 5</div>
+  <h2>Predictive Analytics I: Data Mining<br>Process, Methods & Algorithms</h2>
+  <p class="chapter-desc">Definisi, proses standar, algoritma lengkap, evaluasi model, dan studi kasus Hollywood. Klik accordion untuk detail.</p>
+</div>
+
+<div class="section">
+  <h3><span class="num">5.1</span> Definisi & Konsep Dasar Data Mining</h3>
+  <div class="def">
+    <strong>Data Mining (Fayyad et al., 1996):</strong> Proses <em>nontrivial</em> dalam mengekstraksi pengetahuan yang <strong>valid</strong> (dapat dipercaya), <strong>novel</strong> (baru), <strong>potentially useful</strong> (potensial bermanfaat), dan <strong>understandable</strong> (dapat dipahami) dari data dalam jumlah besar.
+  </div>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🔑 Penjelasan 5 Kata Kunci + Nama Lain</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid3">
+      <div class="card"><div class="card-t t1">NONTRIVIAL</div><p>Bukan perhitungan sederhana. Membutuhkan algoritma kompleks, tidak bisa dilakukan manual. Contoh: menemukan pola dari jutaan transaksi.</p></div>
+      <div class="card"><div class="card-t t2">VALID</div><p>Pola harus akurat dan dapat diandalkan — bukan kebetulan statistik. Harus divalidasi dengan test set (data yang belum pernah dilihat model).</p></div>
+      <div class="card"><div class="card-t t4">NOVEL</div><p>Pengetahuan yang dihasilkan harus baru — sesuatu yang belum diketahui sebelumnya. Jika sudah diketahui, tidak ada nilai tambahnya.</p></div>
+      <div class="card"><div class="card-t t3">POTENTIALLY USEFUL</div><p>Harus bisa menghasilkan manfaat nyata: keputusan bisnis lebih baik, penghematan biaya, peningkatan revenue.</p></div>
+      <div class="card"><div class="card-t t1">UNDERSTANDABLE</div><p>Hasil harus bisa dipahami oleh manusia (terutama pengambil keputusan). Ini mengapa interpretability adalah kriteria evaluasi penting.</p></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>Nama lain Data Mining:</strong></p>
+    <span class="tag tg">Knowledge Extraction</span><span class="tag tg">Pattern Analysis</span><span class="tag tg">Knowledge Discovery in Databases (KDD)</span><span class="tag tg">Information Harvesting</span><span class="tag tg">Data Dredging</span><span class="tag tg">Pattern Searching</span>
+    <div class="def def-r" style="margin-top:12px;"><strong>Mengapa "misnomer"?</strong> Yang "digali" BUKAN datanya — data sudah tersedia. Yang digali adalah <em>knowledge / pola tersembunyi</em> di dalam data.</div>
+    <p style="margin:12px 0 6px;"><strong>5 Faktor Pendorong Data Mining:</strong></p>
+    <ol class="s">
+      <li>Pengakuan nilai dari sumber data yang tersedia</li>
+      <li>Ketersediaan data berkualitas (pelanggan, vendor, transaksi, web)</li>
+      <li>Konsolidasi data ke dalam data warehouse</li>
+      <li>Peningkatan eksponensial kemampuan komputasi + penurunan biaya</li>
+      <li>Konversi informasi ke bentuk digital/non-fisik</li>
+    </ol>
+    <p style="margin:10px 0 6px;font-size:13px;"><strong>Environment DM:</strong> Biasanya client-server atau web-based. Data = bahan paling kritis. Miner seringkali end user langsung. "Striking it rich requires creative thinking."</p>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">5.2</span> Tiga Proses Standar Data Mining</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🔄 CRISP-DM — 6 Langkah (Paling Populer)</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <p style="margin-bottom:12px;color:var(--muted);font-size:13px;"><strong>Proses ini sangat iteratif</strong> — bisa kembali ke langkah sebelumnya kapan saja. DM = art vs science.</p>
+    <div class="step-flow">
+      <div class="step"><div class="step-n">1</div><div class="step-name">Business Understanding</div><div class="step-desc">Pahami tujuan bisnis</div><div class="tip"><strong>Apa:</strong> Tentukan tujuan bisnis dari perspektif bisnis (bukan teknis).<br><br><strong>Contoh:</strong> "Kurangi churn pelanggan 20% dalam 6 bulan."<br><br><strong>Output:</strong> Business objectives, success criteria, project plan</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-name">Data Understanding</div><div class="step-desc">Kenali data</div><div class="tip"><strong>Apa:</strong> Kumpulkan data awal, kenali karakteristik, identifikasi masalah kualitas data.<br><br><strong>Contoh:</strong> Cek missing values, distribusi, outlier.<br><br><strong>Output:</strong> Data description report</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-name">Data Preparation</div><div class="step-desc">Bersihkan & siapkan</div><div class="tip"><strong>Apa:</strong> Seleksi, pembersihan, konstruksi, integrasi data. Paling memakan waktu (60-80% total waktu proyek)!<br><br><strong>Contoh:</strong> Imputasi missing values, encoding, normalisasi.</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-name">Modeling</div><div class="step-desc">Pilih & terapkan algoritma</div><div class="tip"><strong>Apa:</strong> Pilih teknik, buat test design, bangun dan nilai model.<br><br><strong>Contoh:</strong> Coba DT, SVM, ANN, bandingkan hasilnya.</div></div>
+      <div class="step"><div class="step-n">5</div><div class="step-name">Evaluation</div><div class="step-desc">Nilai model vs tujuan bisnis</div><div class="tip"><strong>Apa:</strong> Evaluasi apakah model memenuhi tujuan BISNIS (bukan hanya akurasi teknis).<br><br><strong>Contoh:</strong> Model 90% akurat tapi pakai variabel yang tidak bisa dikumpulkan di produksi → tidak layak deploy.</div></div>
+      <div class="step"><div class="step-n">6</div><div class="step-name">Deployment</div><div class="step-desc">Terapkan ke produksi</div><div class="tip"><strong>Apa:</strong> Integrasikan model ke dalam proses bisnis.<br><br><strong>Contoh:</strong> Model rekomendasi diintegrasikan ke website e-commerce.</div></div>
+    </div>
+    <div class="def" style="margin-top:12px;"><strong>INGAT:</strong> Proses bersifat iteratif. Bisa kembali ke langkah manapun kapan saja. Ini bukan proses satu arah!</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">📊 SEMMA (SAS Institute) — 5 Langkah</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid3">
+      <div class="card"><div class="card-t t1">S — Sample</div><p>Ambil sampel representatif dari data besar. Cukup besar untuk mengandung pola, cukup kecil untuk diproses efisien.</p></div>
+      <div class="card"><div class="card-t t2">E — Explore</div><p>Eksplorasi data (EDA): visualisasi, summary statistics, deteksi outlier, identifikasi hubungan antar variabel.</p></div>
+      <div class="card"><div class="card-t t4">M — Modify</div><p>Modifikasi dan transformasi data: buat variabel baru, ubah skala, handle missing values, encode kategoris.</p></div>
+      <div class="card"><div class="card-t t3">M — Model</div><p>Terapkan teknik data mining (regresi, pohon keputusan, neural network, dll.) untuk hasilkan model.</p></div>
+      <div class="card"><div class="card-t t1">A — Assess</div><p>Nilai performa model menggunakan metrik (akurasi, ROC) pada test set yang tidak pernah dilihat model.</p></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🗄️ KDD — Knowledge Discovery in Databases (5 Tahap)</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <ol class="s">
+      <li><strong>Selection:</strong> Pilih data relevan dari database berdasarkan domain knowledge dan tujuan analisis.</li>
+      <li><strong>Preprocessing:</strong> Bersihkan data — hapus noise, tangani missing values, resolusi konflik antar sumber data.</li>
+      <li><strong>Transformation:</strong> Ubah format — normalisasi, agregasi, konstruksi fitur baru yang lebih representatif.</li>
+      <li><strong>Data Mining:</strong> Terapkan algoritma untuk menemukan pola tersembunyi (inti dari seluruh proses KDD).</li>
+      <li><strong>Interpretation/Evaluation:</strong> Interpretasikan pola, evaluasi relevansinya, visualisasikan hasilnya.</li>
+    </ol>
+    <div class="def def-b"><strong>Perbandingan:</strong> KDD = paling akademik. CRISP-DM = paling banyak digunakan industri (tambah Business Understanding & Deployment). SEMMA = dikembangkan SAS untuk tool mereka.</div>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">5.3</span> Metode & Algoritma Data Mining</h3>
+  <div class="grid2">
+    <div class="card"><div class="card-t t1">📈 PREDICTIVE TASKS</div><p>Menggunakan variabel yang diketahui untuk <strong>memprediksi</strong> variabel target. Ada variabel target (dependent variable).</p><ul><li><strong>Classification</strong> — target kategoris</li><li><strong>Regression</strong> — target numerik kontinu</li><li><strong>Time Series</strong> — prediksi berdasarkan waktu</li></ul></div>
+    <div class="card"><div class="card-t t2">🔍 DESCRIPTIVE TASKS</div><p><strong>Mendeskripsikan</strong> pola dari data yang ada. TIDAK ada variabel target. Tidak memprediksi masa depan.</p><ul><li><strong>Clustering</strong> — kelompokkan data</li><li><strong>Association Rule</strong> — hubungan antar item</li><li><strong>Visualization</strong> — tampilkan pola visual</li></ul></div>
+  </div>
+
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🌳 Decision Tree — Pohon Keputusan (Algoritma)</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Membagi data secara rekursif menjadi cabang-cabang berdasarkan kondisi atribut, membentuk struktur pohon. Setiap leaf node = kelas/prediksi.<br><strong>Algoritma populer:</strong> <span class="tag tg">ID3</span><span class="tag tg">C4.5/C5.0</span><span class="tag tg">CART</span><span class="tag tg">CHAID</span><span class="tag tg">M5</span><br><strong>Contoh use:</strong> Klasifikasi kredit (layak/tidak), diagnosis penyakit, klasifikasi spam.</div>
+    <p style="margin:10px 0 6px;"><strong>4 Langkah Membangun Decision Tree:</strong></p>
+    <ol class="s">
+      <li><strong>Buat root node</strong> dan assign semua data training ke dalamnya.</li>
+      <li><strong>Pilih atribut pemisah (splitting attribute) terbaik</strong> berdasarkan kriteria (Information Gain, Gini Index).</li>
+      <li><strong>Tambah cabang</strong> untuk setiap nilai split, bagi data ke subset mutually exclusive.</li>
+      <li><strong>Ulangi 2-3</strong> untuk setiap leaf node hingga stopping criteria terpenuhi.</li>
+    </ol>
+    <div class="grid3" style="margin-top:10px;">
+      <div class="card"><div class="card-t t1">Splitting Criteria</div><p>Pilih atribut pemisah terbaik. Tujuan: ciptakan subset paling murni/homogen. Contoh: Information Gain (ID3), Gini Impurity (CART), Chi-Square (CHAID).</p></div>
+      <div class="card"><div class="card-t t2">Stopping Criteria</div><p>Kapan berhenti: (1) Semua data di node sudah satu kelas, (2) Tidak ada atribut lagi, (3) Pohon mencapai kedalaman max, (4) Node terlalu kecil.</p></div>
+      <div class="card"><div class="card-t t3">Pruning</div><p>Generalisasi pohon untuk mencegah overfitting. <strong>Pre-pruning:</strong> hentikan sebelum selesai. <strong>Post-pruning:</strong> bangun penuh lalu pangkas cabang tidak signifikan.</p></div>
+    </div>
+    <div class="def def-r" style="margin-top:10px;"><strong>⚠️ KUIS PENTING:</strong> "Decision Tree" punya DUA arti! (1) Algoritma klasifikasi di Ch.5, (2) Representasi grafis scenario analysis di Ch.8. JANGAN tertukar!</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🧠 Artificial Neural Network (ANN)</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Model komputasi terinspirasi dari neuron otak manusia. Terdiri dari: <em>input layer</em> (menerima data), satu/lebih <em>hidden layer</em> (proses informasi), <em>output layer</em> (prediksi).<br><strong>Cara kerja:</strong> Setiap koneksi punya bobot (weight). Selama training, bobot disesuaikan via <em>backpropagation</em> untuk meminimalkan error.<br><strong>Kelebihan:</strong> Sangat akurat untuk data kompleks, non-linear.<br><strong>Kekurangan:</strong> "Black Box" — sulit diinterpretasi. Butuh banyak data dan waktu lama.<br><strong>Untuk clustering:</strong> Adaptive Resonance Theory (ART) dan Self-Organizing Map (SOM) adalah varian ANN untuk clustering.<br><strong>Contoh use:</strong> Prediksi box-office film, pengenalan wajah, deteksi fraud.</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">⚔️ Support Vector Machine (SVM)</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Menemukan <em>hyperplane</em> optimal yang memisahkan kelas dengan margin terlebar. Data paling dekat dengan hyperplane = <em>support vectors</em>.<br><strong>Intuisi:</strong> Memisahkan apel dan jeruk dengan garis (2D) / bidang (3D) dengan jarak terbesar antara apel terdekat dan jeruk terdekat.<br><strong>Kernel Trick:</strong> Untuk data non-linearly separable, gunakan kernel function untuk memetakan ke dimensi lebih tinggi.<br><strong>Performa (film):</strong> <span class="tag tv">Bingo: 55.49% — Terbaik di individual models</span><br><strong>Kelebihan:</strong> Efektif di high-dimensional spaces, robust terhadap overfitting.<br><strong>Contoh use:</strong> Klasifikasi teks, bioinformatik, prediksi sukses film.</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🔵 k-Means Clustering — 4 Langkah Wajib Hafal</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Algoritma unsupervised yang membagi data ke k cluster berdasarkan kemiripan. Tidak ada variabel target — menemukan struktur alami data.</div>
+    <ol class="s">
+      <li><strong>Tentukan k</strong> (jumlah cluster) dan pilih k centroid awal secara acak.</li>
+      <li><strong>Assign setiap titik</strong> ke centroid terdekat (berdasarkan jarak Euclidean).</li>
+      <li><strong>Hitung ulang centroid baru</strong> berdasarkan rata-rata semua titik dalam setiap cluster.</li>
+      <li><strong>Ulangi langkah 2-3</strong> sampai convergence — assignment titik ke cluster tidak berubah lagi.</li>
+    </ol>
+    <div class="def def-b"><strong>Tantangan utama:</strong> Menentukan nilai k optimal. Metode: Elbow Method, Silhouette Score. Sensitif terhadap outlier dan pemilihan centroid awal.<br><strong>Algoritma lain:</strong> Fuzzy c-means, ART, SOM, Genetic Algorithms.</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🛒 Association Rule Mining — Market Basket Analysis</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Menemukan aturan yang menyatakan item mana yang cenderung muncul bersama dalam transaksi.<br><strong>Format:</strong> {A, B} → {C}: "Orang yang beli A dan B cenderung juga beli C"<br><strong>Contoh klasik:</strong> {Roti, Susu} → {Mentega}. Juga: {Popok} → {Bir}<br><strong>Metriks:</strong> <span class="tag tb">Support</span> <span class="tag tb">Confidence</span> <span class="tag tb">Lift</span><br><strong>Algoritma utama:</strong> Apriori Algorithm</div>
+    <div class="grid3" style="margin-top:10px;">
+      <div class="card"><div class="card-t t4">Strategi: Berdekatan</div><p>Letakkan item yang sering dibeli bersama di rak yang berdekatan → mudah dijangkau, tingkatkan penjualan keduanya.</p></div>
+      <div class="card"><div class="card-t t1">Strategi: Bundle</div><p>Promosikan sebagai paket/bundling. Contoh: "Beli roti + susu, gratis mentega."</p></div>
+      <div class="card"><div class="card-t t2">Strategi: Jauhkan</div><p>Letakkan item berjauhan → pelanggan telusuri lebih banyak area toko, meningkatkan exposure produk lain.</p></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🌲 Ensemble Methods — Kekuatan Gabungan Model</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def"><strong>Apa:</strong> Menggabungkan beberapa model untuk prediksi lebih akurat dan stabil. Seperti keputusan berdasarkan banyak ahli — kesalahan tiap model saling mengoreksi.</div>
+    <div class="grid3">
+      <div class="card"><div class="card-t t1">Random Forest</div><p>Banyak pohon keputusan acak (subset acak data+fitur), gabungkan dengan voting. Bingo: 54.62%, 1-Away: 89.60%, SD: 0.76</p></div>
+      <div class="card"><div class="card-t t2">Boosted Tree</div><p>Pohon berurutan — setiap pohon fokus pada kesalahan pohon sebelumnya. Bingo: 54.05%, 1-Away: 84.10%, SD: 0.84</p></div>
+      <div class="card"><div class="card-t t4">⭐ Fusion (Average)</div><p>Rata-rata prediksi semua model. <strong>TERBAIK KESELURUHAN:</strong> Bingo: 56.07%, 1-Away: 90.75%, SD: 0.63 (terendah!)</p></div>
+    </div>
+    <div class="def def-g" style="margin-top:10px;"><strong>Keunggulan Ensemble:</strong> Standard deviation jauh lebih rendah → prediksi lebih <em>konsisten</em>. Fusion SD=0.63 vs CART SD=1.05.</div>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">5.4</span> Evaluasi Model & Studi Kasus Hollywood</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">📏 5 Kriteria Evaluasi + k-Fold CV + ROC Curve</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="cmd-grid">
+      <div class="cmd"><div class="cmd-n">1</div><div><div class="cmd-t">Predictive Accuracy</div><div class="cmd-d">Seberapa sering model membuat prediksi benar pada holdout sample. Diukur dengan % hit rate. Contoh: SVM Bingo=55.49%, Fusion=56.07%</div></div></div>
+      <div class="cmd"><div class="cmd-n">2</div><div><div class="cmd-t">Speed</div><div class="cmd-d">Dua dimensi: (a) kecepatan training, (b) kecepatan scoring/prediksi. Penting untuk aplikasi real-time.</div></div></div>
+      <div class="cmd"><div class="cmd-n">3</div><div><div class="cmd-t">Robustness</div><div class="cmd-d">Performa tetap baik meskipun ada data noisy, missing values, atau distribusi sedikit berbeda dari training data.</div></div></div>
+      <div class="cmd"><div class="cmd-n">4</div><div><div class="cmd-t">Scalability</div><div class="cmd-d">Kemampuan mempertahankan efisiensi saat data meningkat drastis (dari ribuan ke jutaan record).</div></div></div>
+      <div class="cmd"><div class="cmd-n">5</div><div><div class="cmd-t">Interpretability / Transparency</div><div class="cmd-d">Seberapa mudah model dapat dipahami manusia. DT = sangat interpretable. ANN = black box. Ada tradeoff: akurasi vs interpretability.</div></div></div>
+    </div>
+    <div class="grid2" style="margin-top:14px;">
+      <div class="card"><div class="card-t t1">k-Fold Cross Validation</div><p>Bagi data ke k bagian. Model dilatih k kali — setiap kali 1 fold jadi test set. Hasil = rata-rata k percobaan. Lebih andal dari split biasa karena setiap data point digunakan sebagai test set tepat sekali.</p></div>
+      <div class="card"><div class="card-t t2">ROC Curve & AUC</div><p>Grafik True Positive Rate vs False Positive Rate. AUC = Area Under ROC Curve.<br>• AUC=0.5 → tidak lebih baik dari tebakan acak<br>• AUC=1.0 → klasifikasi sempurna<br>• AUC=0.84 → contoh dari materi (sangat baik)<br>Cocok untuk skewed class distributions.</p></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🎬 Case Study: Data Mining Goes to Hollywood — Lengkap</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="fw">
+      <div class="fi"><div class="fq">WHAT</div><div class="fa">Prediksi box-office receipts film Hollywood sebelum produksi dimulai (saat masih ide)</div></div>
+      <div class="fi"><div class="fq">WHO</div><div class="fa">Ramesh Sharda & Dursun Delen, Oklahoma State University</div></div>
+      <div class="fi"><div class="fq">HOW</div><div class="fa">Ubah regresi → klasifikasi multinomial 9 kelas. Tools: IBM SPSS Modeler</div></div>
+      <div class="fi"><div class="fq">DATA</div><div class="fa">2.632 film (1998–2006). Train: 1998–2005. Test: 2006. Sumber: ShowBiz, IMDb, BoxOfficeMojo</div></div>
+      <div class="fi"><div class="fq">WHY</div><div class="fa">Film = "land of hunches & wild guesses." Jack Valenti: "No one can tell you how a movie will do."</div></div>
+      <div class="fi"><div class="fq">RESULT</div><div class="fa">Fusion terbaik: 56.07%, diklaim terbaik dalam literatur</div></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>9 Kelas Output (Dependent Variable):</strong></p>
+    <table><thead><tr><th>Kelas</th><th>1(Flop)</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9(Blockbuster)</th></tr></thead><tbody><tr><td>Range($M)</td><td>&lt;1</td><td>1-10</td><td>10-20</td><td>20-40</td><td>40-65</td><td>65-100</td><td>100-150</td><td>150-200</td><td>&gt;200</td></tr></tbody></table>
+    <p style="margin:12px 0 6px;"><strong>7 Variabel Independen (Input/Predictor):</strong></p>
+    <table><thead><tr><th>Variabel</th><th># Nilai</th><th>Contoh</th></tr></thead><tbody>
+      <tr><td>MPAA Rating</td><td>5</td><td>G, PG, PG-13, R, NR</td></tr>
+      <tr><td>Competition</td><td>3</td><td>High, Medium, Low</td></tr>
+      <tr><td>Star Value</td><td>3</td><td>High, Medium, Low</td></tr>
+      <tr><td>Genre</td><td>10</td><td>Sci-Fi, Horror, Comedy, Action, dll.</td></tr>
+      <tr><td>Special Effects</td><td>3</td><td>High, Medium, Low</td></tr>
+      <tr><td>Sequel</td><td>2</td><td>Yes, No</td></tr>
+      <tr><td>Number of Screens</td><td>1 (numerik)</td><td>Integer 1–3876</td></tr>
+    </tbody></table>
+    <p style="margin:12px 0 6px;"><strong>Hasil Prediksi — 6 Model:</strong></p>
+    <table><thead><tr><th>Metrik</th><th>SVM</th><th>ANN</th><th>CART</th><th>Random Forest</th><th>Boosted Tree</th><th>⭐Fusion</th></tr></thead><tbody>
+      <tr><td>Bingo %</td><td class="warn">55.49%</td><td>52.60%</td><td class="bad">40.46%</td><td>54.62%</td><td>54.05%</td><td class="best">56.07%</td></tr>
+      <tr><td>1-Away %</td><td>85.55%</td><td>87.28%</td><td class="bad">76.88%</td><td>89.60%</td><td>84.10%</td><td class="best">90.75%</td></tr>
+      <tr><td>Std Dev</td><td>0.93</td><td>0.87</td><td class="bad">1.05</td><td>0.76</td><td>0.84</td><td class="best">0.63</td></tr>
+    </tbody></table>
+    <div class="def def-g" style="margin-top:10px;"><strong>Kesimpulan:</strong> Individual terbaik Bingo=SVM (55.49%). Individual terburuk=CART (40.46%). Ensemble selalu lebih baik dari individual. Fusion = Juara Keseluruhan. Sensitivity analysis bisa mengukur nilai setiap aktor/tanggal rilis/efek khusus.</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🚫 6 Mitos, 5 Pitfalls & Target Story</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <table><thead><tr><th>Mitos ❌</th><th>Realita ✅</th></tr></thead><tbody>
+      <tr><td style="color:var(--accent5);font-style:italic;">DM memberikan prediksi instan seperti crystal ball</td><td style="color:var(--accent4);">DM = proses multi-langkah yang perlu desain deliberate dan proaktif</td></tr>
+      <tr><td style="color:var(--accent5);font-style:italic;">DM belum siap untuk bisnis mainstream</td><td style="color:var(--accent4);">State of the art sudah siap untuk hampir semua jenis bisnis</td></tr>
+      <tr><td style="color:var(--accent5);font-style:italic;">DM butuh database tersendiri yang terpisah</td><td style="color:var(--accent4);">Kemajuan teknologi database → database khusus tidak lagi diperlukan</td></tr>
+      <tr><td style="color:var(--accent5);font-style:italic;">Hanya orang dengan gelar tinggi yang bisa DM</td><td style="color:var(--accent4);">Web-based tools memungkinkan manajer semua level melakukan DM</td></tr>
+      <tr><td style="color:var(--accent5);font-style:italic;">DM hanya untuk perusahaan besar</td><td style="color:var(--accent4);">Siapa saja bisa menggunakannya jika data mencerminkan bisnis dengan akurat</td></tr>
+    </tbody></table>
+    <p style="margin:12px 0 6px;"><strong>5 Pitfalls (Jebakan):</strong></p>
+    <ol class="s">
+      <li>Memilih masalah yang salah untuk data mining</li>
+      <li>Mengabaikan ekspektasi sponsor tentang kemampuan DM</li>
+      <li>Mulai tanpa memikirkan akhir yang diinginkan</li>
+      <li>Tidak cukup waktu untuk akuisisi dan persiapan data (60-80% waktu proyek!)</li>
+      <li>Hanya melihat hasil agregat, bukan rekaman individual</li>
+    </ol>
+    <div class="def def-r" style="margin-top:10px;"><strong>Target Story (Privasi):</strong> Target memprediksi kehamilan pelanggan dari pola pembelian → kirim kupon bayi ke remaja hamil yang orang tuanya belum tahu. Pelajaran: DM sangat powerful TAPI harus mempertimbangkan privasi, persetujuan, dan sensitivitas sosial.</div>
+  </div></div></div>
+</div>
+</div><!-- end tab-ch5 -->
+
+<!-- ════════════════ TAB CH8 ════════════════ -->
+<div id="tab-ch8" class="tab-content">
+<div class="chapter ch2">
+  <div class="chapter-label l2">Chapter 8</div>
+  <h2>Prescriptive Analytics:<br>Optimization & Simulation</h2>
+  <p class="chapter-desc">LP, sensitivitas, pengambilan keputusan, simulasi. Menjawab: "Apa keputusan terbaik yang harus diambil?"</p>
+</div>
+
+<div class="section">
+  <h3><span class="num">8.1</span> Prescriptive Analytics & Linear Programming</h3>
+  <div class="def def-b"><strong>Prescriptive Analytics:</strong> Menjawab <em>"Apa yang sebaiknya dilakukan?"</em> — level analitik tertinggi (Descriptive → Predictive → Prescriptive). Memberikan rekomendasi tindakan optimal.</div>
+  <div class="def def-b"><strong>Linear Programming (LP):</strong> Model optimisasi terbaik yang dikenal. Alokasi optimal sumber daya terbatas di antara aktivitas bersaing. SEMUA hubungan matematis harus <em>linear</em>.</div>
+
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">📐 4 Komponen Model LP + Slack/Surplus</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid2">
+      <div class="pc" style="border-top-color:var(--accent1);"><div class="icon">🎯</div><div class="pname" style="color:var(--accent1);">1. Decision Variables</div><div class="pdef">Variabel yang DIKONTROL pengambil keputusan. Nilainya yang dicari algoritma optimisasi. Mewakili "apa yang bisa kita atur."</div><div class="pex"><strong>Contoh MBI:</strong> X₁=unit CC-7 yang diproduksi; X₂=unit CC-8 yang diproduksi</div></div>
+      <div class="pc" style="border-top-color:var(--accent4);"><div class="icon">📈</div><div class="pname" style="color:var(--accent4);">2. Objective Function</div><div class="pdef">Fungsi yang ingin dioptimalkan — dimaksimalkan (profit) atau diminimalkan (biaya). Ini adalah "tujuan" model.</div><div class="pex"><strong>Contoh MBI:</strong> Max Z = 8.000X₁ + 12.000X₂</div></div>
+      <div class="pc" style="border-top-color:var(--accent5);"><div class="icon">🔒</div><div class="pname" style="color:var(--accent5);">3. Constraints</div><div class="pdef">Batasan yang merepresentasikan teknologi, kondisi pasar, variabel tidak terkontrol. Membatasi ruang solusi yang valid.</div><div class="pex"><strong>Contoh MBI:</strong> 300X₁+500X₂≤200.000 (labor); X₁≥100 (min CC-7)</div></div>
+      <div class="pc" style="border-top-color:var(--accent3);"><div class="icon">📊</div><div class="pname" style="color:var(--accent3);">4. Result Variable (Z)</div><div class="pdef">Nilai output dari model berdasarkan decision variables yang dipilih. Ini adalah "jawaban" model.</div><div class="pex"><strong>Contoh MBI:</strong> Z = Total Profit = $5.066.667</div></div>
+    </div>
+    <div class="grid2" style="margin-top:10px;">
+      <div class="card"><div class="card-t t1">Slack Variable (komponen tersembunyi)</div><p>Muncul pada <strong>≤ constraints</strong>. Merepresentasikan kapasitas/budget yang <strong>tidak terpakai</strong> (kelebihan sumber daya). Contoh: labor yang tersisa setelah produksi.</p></div>
+      <div class="card"><div class="card-t t2">Surplus Variable (komponen tersembunyi)</div><p>Muncul pada <strong>≥ constraints</strong>. Merepresentasikan produksi yang <strong>melebihi minimum</strong> yang diminta. Contoh: unit lebih dari minimum marketing requirement.</p></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🏭 Studi Kasus MBI Corporation + Cara Gunakan Excel Solver</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="fw">
+      <div class="fi"><div class="fq">MASALAH</div><div class="fa">Berapa unit CC-7 dan CC-8 yang harus diproduksi/bulan untuk maksimalkan profit?</div></div>
+      <div class="fi"><div class="fq">SOLUSI</div><div class="fa">X₁=333,33 unit CC-7; X₂=200 unit CC-8; Z=$5.066.667</div></div>
+      <div class="fi"><div class="fq">TOOL</div><div class="fa">Excel Solver (Simplex LP). Alternatif: Lingo, Lindo.</div></div>
+      <div class="fi"><div class="fq">LAPORAN</div><div class="fa">3 laporan: Answer, Sensitivity, Limits</div></div>
+    </div>
+    <table style="margin-top:12px;"><thead><tr><th>Spesifikasi</th><th>CC-7 (X₁)</th><th>CC-8 (X₂)</th><th>Batas</th><th>Tipe</th></tr></thead><tbody>
+      <tr><td>Labor (hari)</td><td>300/unit</td><td>500/unit</td><td>≤ 200.000/bulan</td><td>≤ (slack)</td></tr>
+      <tr><td>Material ($)</td><td>$10.000/unit</td><td>$15.000/unit</td><td>≤ $8.000.000/bulan</td><td>≤ (slack)</td></tr>
+      <tr><td>Marketing CC-7</td><td>≥ 100 unit</td><td>—</td><td>Min 100 unit</td><td>≥ (surplus)</td></tr>
+      <tr><td>Marketing CC-8</td><td>—</td><td>≥ 200 unit</td><td>Min 200 unit</td><td>≥ (surplus)</td></tr>
+      <tr><td>Profit/unit</td><td>$8.000</td><td>$12.000</td><td colspan="2">Maksimalkan Z = 8.000X₁ + 12.000X₂</td></tr>
+    </tbody></table>
+    <p style="margin:12px 0 6px;"><strong>7 Langkah Excel Solver:</strong></p>
+    <ol class="s">
+      <li>Input data ke spreadsheet (koefisien, RHS constraints)</li>
+      <li>Buka Solver: Data tab → Analysis ribbon → Solver (aktifkan di Add-ins)</li>
+      <li>Set <strong>Target Cell = Max</strong> (sel objective function)</li>
+      <li>Set <strong>By Changing Cells</strong> → pilih sel decision variables</li>
+      <li>Tambahkan semua <strong>constraints</strong></li>
+      <li>Di Options: pilih <strong>Simplex LP</strong></li>
+      <li>Solve → pilih 3 laporan: <strong>Answer, Sensitivity, Limits</strong></li>
+    </ol>
+    <div class="def def-b" style="margin-top:10px;"><strong>Contoh Sensitivity Analysis MBI:</strong> Jika RHS marketing constraint CC-8 dikurangi 1 unit → profit naik $1.333,33. Berlaku selama RHS > 0.</div>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">8.2</span> Sensitivity Analysis, What-If & Goal Seeking</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">📉 Sensitivity Analysis — Definisi, Penggunaan & 2 Jenis</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def def-b"><strong>Sensitivity Analysis:</strong> Menilai dampak perubahan pada data input atau parameter terhadap solusi yang diusulkan. "Seberapa robustkah solusi optimal kita jika asumsi berubah?"</div>
+    <p style="margin:10px 0 6px;"><strong>Mengapa penting:</strong></p>
+    <ul class="s">
+      <li>Fleksibilitas dan adaptasi terhadap kondisi yang berubah</li>
+      <li>Pemahaman yang lebih baik tentang model dan situasi keputusan</li>
+      <li>Meningkatkan kepercayaan manajer terhadap model</li>
+    </ul>
+    <div class="grid2" style="margin-top:12px;">
+      <div class="card"><div class="card-t t1">Automatic Sensitivity Analysis</div><p>Dilakukan <strong>otomatis</strong> oleh LP software. Melaporkan <em>range</em> nilai parameter yang bisa berubah tanpa mempengaruhi solusi signifikan.<br><br><span class="tag tr">Keterbatasan:</span> Hanya satu perubahan sekaligus, hanya variabel tertentu.<br><br>Disediakan oleh Solver, Lindo, hampir semua software LP.</p></div>
+      <div class="card"><div class="card-t t2">Trial-and-Error Sensitivity Analysis</div><p>Ubah input <strong>manual</strong>, solve ulang, bandingkan. Bisa banyak perubahan sekaligus. Dua pendekatan:<br><br><strong>• What-If Analysis</strong> — ubah input, lihat output<br><strong>• Goal Seeking</strong> — tentukan output, cari input</p></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">↔️ What-If Analysis vs Goal Seeking — Perbedaan KRITIS</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid2">
+      <div class="card"><div class="card-t t1">🔮 What-If Analysis (FORWARD)</div><p>"Jika saya ubah INPUT ini, apa yang terjadi pada OUTPUT?"</p><p style="margin-top:8px;"><strong>Contoh nyata:</strong><br>Initial sales 100→120, growth 3%→4%<br>Hasil: profit naik <span class="tag tg">$127 → $182</span></p><p style="margin-top:6px;"><strong>Contoh lain:</strong><br>• Apa yang terjadi pada inventory cost jika biaya penyimpanan naik 10%?<br>• Apa yang terjadi pada market share jika advertising naik 5%?</p></div>
+      <div class="card"><div class="card-t t2">🎯 Goal Seeking (BACKWARD)</div><p>"Nilai INPUT apa yang dibutuhkan untuk mencapai OUTPUT tertentu?"</p><p style="margin-top:8px;"><strong>Contoh nyata:</strong><br>Set NPV=0, cari interest rate<br>Jawaban: IRR = <span class="tag tb">38.77059%</span></p><p style="margin-top:6px;"><strong>Contoh lain:</strong><br>• Anggaran R&D berapa untuk pertumbuhan 15%/tahun?<br>• Berapa perawat untuk kurangi waktu tunggu &lt;10 menit?</p></div>
+    </div>
+    <div class="def def-g" style="margin-top:10px;"><strong>Break-Even Point via Goal Seeking:</strong> Menentukan nilai decision variable yang menghasilkan profit=0. "Pada volume berapa kami mulai untung?"</div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🎯 Multiple Goals — Definisi, 7 Kesulitan, 4 Metode</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <p>Kebanyakan masalah manajerial memiliki BANYAK tujuan yang bisa saling konflik. Contoh: perusahaan ingin <em>sekaligus</em> maksimalkan profit, tumbuhkan bisnis, kembangkan karyawan, layani komunitas.</p>
+    <p style="margin:10px 0 6px;"><strong>7 Kesulitan Multiple Goals:</strong></p>
+    <ol class="s">
+      <li>Sulit mendapatkan pernyataan eksplisit tujuan organisasi</li>
+      <li>Pengambil keputusan dapat mengubah prioritas tujuan seiring waktu</li>
+      <li>Tujuan dipandang berbeda di berbagai level dan departemen</li>
+      <li>Tujuan berubah seiring perubahan lingkungan</li>
+      <li>Hubungan antara alternatif dan tujuan sulit dikuantifikasi</li>
+      <li>Masalah kompleks diselesaikan kelompok dengan agenda berbeda</li>
+      <li>Peserta menilai kepentingan tujuan secara berbeda</li>
+    </ol>
+    <p style="margin:10px 0 6px;"><strong>4 Metode Penanganan:</strong> <span class="tag tg">Utility Theory</span> <span class="tag tg">Goal Programming</span> <span class="tag tg">Goals as Constraints (LP)</span> <span class="tag tg">Points System</span></p>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">8.3</span> Decision Analysis & Simulasi</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">💰 Decision Table, Decision Tree & Contoh Investasi Lengkap</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid2">
+      <div class="card"><div class="card-t t1">Decision Table</div><p>Mengorganisir informasi secara tabular. 3 komponen: (1) Decision variables (alternatives), (2) Uncontrollable variables (states of nature), (3) Result variables (outcomes).</p></div>
+      <div class="card"><div class="card-t t2">Decision Tree (Skenario)</div><p>Representasi GRAFIS dari decision table. Lebih intuitif untuk situasi kompleks. Tools: TreeAge Pro, PrecisionTree (Palisade).<br><span class="tag tr">BUKAN algoritma klasifikasi!</span></p></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>Contoh Investasi (Risk vs Uncertainty):</strong></p>
+    <table><thead><tr><th>Alternatif</th><th>Solid Growth (50%)</th><th>Stagnation (30%)</th><th>Inflation (20%)</th><th>Expected Value</th></tr></thead><tbody>
+      <tr><td><strong>Bonds</strong></td><td>12%</td><td>6%</td><td>3%</td><td class="best">8.4%</td></tr>
+      <tr><td><strong>Stocks</strong></td><td class="best">15%</td><td>3%</td><td class="bad">-2%</td><td>8.0%</td></tr>
+      <tr><td><strong>CDs</strong></td><td>6.5%</td><td>6.5%</td><td>6.5%</td><td>6.5%</td></tr>
+    </tbody></table>
+    <div class="formula">EV Bonds = 12(0.5) + 6(0.3) + 3(0.2) = 6 + 1.8 + 0.6 = <strong>8.4%</strong></div>
+    <div class="grid2" style="margin-top:10px;">
+      <div class="card"><div class="card-t t5">Treating UNCERTAINTY (tanpa prob)</div><ul><li><strong>Optimistic (Maximax):</strong> Best of best → Stocks (15%)</li><li><strong>Pessimistic (Maximin):</strong> Best of worst → CDs (6.5%)</li><li><strong>Equal Probability:</strong> Semua states sama mungkin</li></ul></div>
+      <div class="card"><div class="card-t t4">Treating RISK (dengan prob)</div><p>Gunakan Expected Value = Σ (outcome × probability).</p><p style="margin-top:6px;">Pilih alternatif EV tertinggi → Bonds (8.4%)</p><div class="def def-r" style="margin-top:8px;"><strong>⚠️ Bahaya EV:</strong> Bisa menyesatkan jika ada risiko katastrofik kecil. Contoh: EV=$949.80 tapi 0.01% rugi $500.000 → tidak semua investor bisa menanggung!</div></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">⚙️ Simulasi — Definisi, Jenis, Proses Lengkap</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def def-b"><strong>Simulasi:</strong> Teknik untuk melakukan eksperimen dengan komputer pada model sistem manajemen. Bersifat <strong>DESKRIPTIF</strong>, bukan preskriptif — tidak ada pencarian solusi optimal otomatis. Digunakan HANYA ketika optimisasi tidak memungkinkan.</div>
+    <p style="margin:10px 0 6px;"><strong>4 Karakteristik Simulasi:</strong></p>
+    <ol class="s">
+      <li>Membangun model realita sedekat mungkin yang praktis</li>
+      <li>Melibatkan lebih sedikit asumsi dibanding model optimisasi lainnya</li>
+      <li>Teknik untuk melakukan eksperimen — mengetes nilai variabel tertentu</li>
+      <li>Digunakan HANYA ketika masalah terlalu kompleks untuk optimisasi numerik</li>
+    </ol>
+    <div class="grid3" style="margin-top:10px;">
+      <div class="card"><div class="card-t t1">Deterministic vs Stochastic</div><p><strong>Deterministic:</strong> Tidak ada randomness, output pasti.<br><strong>Stochastic:</strong> Menggunakan distribusi probabilitas untuk ketidakpastian.</p></div>
+      <div class="card"><div class="card-t t2">Monte Carlo</div><p>Teknik dengan bilangan acak. Formula: X = A + B di mana A, B, X adalah distribusi (bukan nilai tetap). Berguna untuk risk analysis keuangan.</p></div>
+      <div class="card"><div class="card-t t4">Discrete Event vs Continuous</div><p><strong>Discrete:</strong> Perubahan pada titik waktu tertentu (antrian bank).<br><strong>Continuous:</strong> Perubahan terus-menerus (aliran cairan).</p></div>
+    </div>
+    <p style="margin:10px 0 6px;"><strong>Implementasi:</strong> <span class="tag tb">Visual Simulation</span> <span class="tag tb">Object-Oriented</span> <span class="tag tb">Agent-based</span><br><strong>Software:</strong> <span class="tag tg">Arena</span> <span class="tag tg">ExtendSim</span> <span class="tag tg">SAS Simulation Studio</span> <span class="tag tg">Simio</span></p>
+    <p style="margin:10px 0 6px;"><strong>6 Langkah Proses Simulasi:</strong></p>
+    <ol class="s">
+      <li>Define problem — definisikan masalah dan tujuan</li>
+      <li>Construct the model — bangun model matematis/logis</li>
+      <li>Test and validate model — pastikan model merepresentasikan realita</li>
+      <li>Design/conduct experiments — rancang dan jalankan skenario</li>
+      <li>Evaluate results — analisis output, bandingkan skenario</li>
+      <li>Implement solution — terapkan temuan ke dunia nyata</li>
+    </ol>
+  </div></div></div>
+</div>
+</div><!-- end tab-ch8 -->
+
+<!-- ════════════════ TAB CH11 ════════════════ -->
+<div id="tab-ch11" class="tab-content">
+<div class="chapter ch3">
+  <div class="chapter-label l3">Chapter 11</div>
+  <h2>Ethical, Privacy &<br>Managerial Considerations in Analytics</h2>
+  <p class="chapter-desc">Semua isu etika, privasi, dan manajerial dalam implementasi AI dan intelligent systems.</p>
+</div>
+
+<div class="section">
+  <h3><span class="num">11.1</span> Implementation Issues</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🔧 9 Major Implementation Issues & Guidelines</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="cmd-grid">
+      <div class="cmd"><div class="cmd-n">1</div><div><div class="cmd-t">Build vs Buy vs Outsource</div><div class="cmd-d">Putuskan: kembangkan sendiri, beli solusi jadi, atau outsource. Pertimbangkan keahlian internal, biaya, waktu, kustomisasi.</div></div></div>
+      <div class="cmd"><div class="cmd-n">2</div><div><div class="cmd-t">Justifikasi Investasi</div><div class="cmd-d">Membenarkan investasi AI kepada manajemen. Perlu ROI analysis yang jelas dan business case yang kuat.</div></div></div>
+      <div class="cmd"><div class="cmd-n">3</div><div><div class="cmd-t">Resistensi Karyawan</div><div class="cmd-d">Mengatasi ketakutan karyawan akan kehilangan pekerjaan. Perlu strategi komunikasi, reskilling, jaminan AI melengkapi — bukan menggantikan.</div></div></div>
+      <div class="cmd"><div class="cmd-n">4</div><div><div class="cmd-t">Tim Manusia-Robot</div><div class="cmd-d">Mengatur kolaborasi yang tepat antara manusia dan AI/robot. Tentukan tugas mana yang sebaiknya dilakukan masing-masing.</div></div></div>
+      <div class="cmd"><div class="cmd-n">5</div><div><div class="cmd-t">Otomatisasi Keputusan</div><div class="cmd-d">Tentukan keputusan mana yang boleh diotomatisasi sepenuhnya dan mana yang tetap harus melibatkan manusia (terutama keputusan berdampak tinggi).</div></div></div>
+      <div class="cmd"><div class="cmd-n">6</div><div><div class="cmd-t">Keamanan Sistem</div><div class="cmd-d">AI berbasis cloud menciptakan vulnerability baru. Robot juga merupakan sumber potensi bahaya keamanan. Perlu proteksi aktif.</div></div></div>
+      <div class="cmd"><div class="cmd-n">7</div><div><div class="cmd-t">Perlindungan Privasi</div><div class="cmd-d">Pastikan data yang diproses AI tidak melanggar hak privasi. Perlu kebijakan data yang jelas dan mekanisme persetujuan pengguna.</div></div></div>
+      <div class="cmd"><div class="cmd-n">8</div><div><div class="cmd-t">Kehilangan Pekerjaan</div><div class="cmd-d">Tangani dampak sosial otomatisasi. Perlu program pelatihan ulang dan transisi karir bagi karyawan yang terdampak.</div></div></div>
+      <div class="cmd"><div class="cmd-n">9</div><div><div class="cmd-t">Kualitas Data</div><div class="cmd-d">"Garbage in, garbage out." Kualitas data menentukan kualitas output AI. Data biased → model biased.</div></div></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>4 Guidelines Digital Labor (KPMG):</strong></p>
+    <ol class="s">
+      <li>Menetapkan area prioritas untuk inovasi teknologi</li>
+      <li>Mengembangkan strategi dan rencana untuk karyawan</li>
+      <li>Identifikasi providers dan partners untuk eksekusi rencana</li>
+      <li>Menetapkan strategi untuk merealisasikan manfaat dari inisiatif digital labor</li>
+    </ol>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">11.2</span> Privacy, Legal & Ethical Issues</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🔒 Definisi Privasi, 2 Aturan Pengadilan & Kasus Nyata</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="def def-p"><strong>Privacy (Privasi):</strong> Hak untuk <em>dibiarkan sendiri</em> (the right to be left alone) dan hak untuk <em>bebas dari gangguan personal yang tidak wajar</em>. Hak privasi diakui di setiap negara bagian AS.</div>
+    <div class="grid2" style="margin-top:10px;">
+      <div class="card"><div class="card-t t2">Aturan Pengadilan 1</div><p><strong>Hak privasi tidak bersifat absolut.</strong> Privasi harus diseimbangkan dengan kebutuhan masyarakat. Misal: keamanan nasional bisa mengalahkan privasi individu dalam kondisi tertentu.</p></div>
+      <div class="card"><div class="card-t t2">Aturan Pengadilan 2</div><p><strong>Hak publik untuk mengetahui lebih unggul dari hak privasi individu.</strong> Misal: rekam jejak pejabat publik bisa dipublikasikan meskipun si pejabat tidak menginginkannya.</p></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>Contoh Kasus Privasi Nyata:</strong></p>
+    <div class="cmd-grid">
+      <div class="cmd"><div class="cmd-n">🏪</div><div><div class="cmd-t">Target Story</div><div class="cmd-d">Memprediksi kehamilan dari pola pembelian → kirim kupon bayi ke remaja hamil yang orang tuanya belum tahu. Isu: penggunaan data tanpa persetujuan.</div></div></div>
+      <div class="cmd"><div class="cmd-n">📧</div><div><div class="cmd-t">Rapleaf (TowerData)</div><div class="cmd-d">Dari email address → buat profil lengkap seseorang. Aggregasi data berlebihan, identitas digital.</div></div></div>
+      <div class="cmd"><div class="cmd-n">🔵</div><div><div class="cmd-t">BlueCava Technology</div><div class="cmd-d">Deteksi profil personal dari multiple devices (laptop, smartphone) tanpa sepengetahuan pengguna.</div></div></div>
+      <div class="cmd"><div class="cmd-n">💳</div><div><div class="cmd-t">Reputation.com</div><div class="cmd-d">Dari email address saja bisa temukan SSN (Social Security Number)! Risiko pencurian identitas sangat serius.</div></div></div>
+      <div class="cmd"><div class="cmd-n">🏦</div><div><div class="cmd-t">Barclays Bank London</div><div class="cmd-d">Sensor panas & gerak melacak berapa lama bankir di meja. Alasan: alokasi ruang. Masalah: serikat pekerja khawatir digunakan sebagai alat surveillance.</div></div></div>
+      <div class="cmd"><div class="cmd-n">🤖</div><div><div class="cmd-t">Epicenter Microchip</div><div class="cmd-d">Microchip implant opsional untuk karyawan — buka pintu, beli makanan. Tapi manajemen bisa melacak lokasi karyawan.</div></div></div>
+      <div class="cmd"><div class="cmd-n">😊</div><div><div class="cmd-t">Facebook Emotion Experiment</div><div class="cmd-d">Manipulasi feed berita untuk menguji pengaruh pada emosi — tanpa persetujuan. Facebook mengakui dan membentuk review formal.</div></div></div>
+    </div>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">11.3</span> Responsible & Ethical AI — 6 Principles Lengkap</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🛡️ 6 Principles of Responsible AI — Definisi + Contoh + Kegagalan</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid2">
+      <div class="pc" style="border-top-color:#f87171;">
+        <div class="icon">⚖️</div>
+        <div class="pname" style="color:#f87171;">1. FAIRNESS (Keadilan)</div>
+        <div class="pdef"><strong>Definisi:</strong> AI harus memperlakukan semua orang secara adil dan menghindari bias/diskriminasi berdasarkan ras, jenis kelamin, usia, agama, atau karakteristik lainnya.<br><strong>Mengapa penting:</strong> AI belajar dari data historis. Jika data historis biased → model akan mereproduksi bias dalam skala besar.</div>
+        <div class="pex"><strong>Kegagalan — Amazon AI Recruiting:</strong> Alat rekrutmen AI mendiskriminasi pelamar perempuan karena dilatih pada data rekrutmen historis yang didominasi pria. Akhirnya dihapus.<br><strong>Kegagalan — COMPAS:</strong> Sistem prediksi residivisme dituduh bias rasial terhadap orang kulit hitam.</div>
+      </div>
+      <div class="pc" style="border-top-color:#f5c842;">
+        <div class="icon">🔧</div>
+        <div class="pname" style="color:#f5c842;">2. RELIABILITY & SAFETY (Keandalan & Keselamatan)</div>
+        <div class="pdef"><strong>Definisi:</strong> AI harus berperforma secara andal dan aman dalam berbagai kondisi — termasuk kondisi tidak terduga. Tidak boleh gagal dengan cara yang membahayakan manusia.<br><strong>Mengapa penting:</strong> AI digunakan dalam sistem kritis (kendaraan otonom, diagnosis medis) di mana kegagalan bisa fatal.</div>
+        <div class="pex"><strong>Contoh penerapan:</strong> Kendaraan otonom harus reliabel dalam cuaca buruk, malam hari, dan situasi tidak biasa — bukan hanya kondisi ideal.<br><strong>Risiko:</strong> Robot di lini produksi yang gagal mendeteksi kehadiran manusia → kecelakaan serius.</div>
+      </div>
+      <div class="pc" style="border-top-color:#a78bfa;">
+        <div class="icon">🔒</div>
+        <div class="pname" style="color:#a78bfa;">3. PRIVACY & SECURITY (Privasi & Keamanan)</div>
+        <div class="pdef"><strong>Definisi:</strong> AI harus menghormati privasi pengguna dan melindungi data dari akses tidak sah. Pengumpulan dan penggunaan data harus transparan dan dengan persetujuan pengguna.<br><strong>Mengapa penting:</strong> AI membutuhkan data besar, seringkali sensitif (kesehatan, keuangan, lokasi). Pelanggaran bisa sangat merugikan.</div>
+        <div class="pex"><strong>Contoh penerapan:</strong> Platform yang pakai AI untuk personalisasi konten harus jelaskan data apa yang dikumpulkan dan berikan opsi opt-out.<br><strong>Kegagalan nyata:</strong> Platform media sosial yang gunakan data pengguna untuk melatih model tanpa persetujuan eksplisit.</div>
+      </div>
+      <div class="pc" style="border-top-color:#4fc3f7;">
+        <div class="icon">🌍</div>
+        <div class="pname" style="color:#4fc3f7;">4. INCLUSIVENESS (Inklusivitas)</div>
+        <div class="pdef"><strong>Definisi:</strong> AI harus memberdayakan SEMUA orang dan melibatkan semua pemangku kepentingan. Harus dapat diakses dan bermanfaat bagi semua segmen masyarakat, bukan hanya kelompok tertentu.<br><strong>Mengapa penting:</strong> Jika dikembangkan hanya untuk kelompok demografis tertentu → gagal melayani populasi lebih luas secara efektif.</div>
+        <div class="pex"><strong>Contoh penerapan:</strong> Asisten suara yang bekerja baik untuk berbagai aksen dan bahasa, bukan hanya aksen Inggris Amerika standar.<br><strong>Kegagalan nyata:</strong> Sistem pengenalan wajah akurat untuk wajah putih tapi kurang akurat untuk wajah kulit gelap karena training data tidak representatif.</div>
+      </div>
+      <div class="pc" style="border-top-color:#34d399;">
+        <div class="icon">🔭</div>
+        <div class="pname" style="color:#34d399;">5. TRANSPARENCY (Transparansi)</div>
+        <div class="pdef"><strong>Definisi:</strong> AI harus dapat dipahami dan dijelaskan (explainable/interpretable). Pengambil keputusan harus bisa mengetahui MENGAPA AI membuat keputusan tertentu.<br><strong>Mengapa penting:</strong> Kepercayaan pada AI bergantung pada pemahaman cara kerjanya. "Black box" AI sulit diaudit, dipertanggungjawabkan, atau diperbaiki.<br><strong>Catatan:</strong> Ada tradeoff — model lebih kompleks = lebih akurat tapi kurang transparan (ANN).</div>
+        <div class="pex"><strong>Contoh penerapan:</strong> Model kredit bisa menjelaskan: "Pinjaman ditolak karena rasio utang/pendapatan 45% (di atas ambang 40%) dan 3 kali terlambat bayar."<br><strong>Persyaratan model AI:</strong> Jika model tidak bisa dipahami, penerapannya bisa menyebabkan konsekuensi tidak terduga.</div>
+      </div>
+      <div class="pc" style="border-top-color:#fb923c;">
+        <div class="icon">📋</div>
+        <div class="pname" style="color:#fb923c;">6. ACCOUNTABILITY (Akuntabilitas)</div>
+        <div class="pdef"><strong>Definisi:</strong> Harus ada pihak yang bertanggung jawab atas keputusan AI. Model harus memiliki mekanisme self-correcting dan diaudit secara reguler. Input dan output harus terus dievaluasi.<br><strong>Mengapa penting:</strong> Ketika AI membuat keputusan yang salah dan merugikan, harus ada pertanggungjawaban yang jelas dan mekanisme perbaikan.</div>
+        <div class="pex"><strong>Contoh penerapan:</strong> Perusahaan yang gunakan AI untuk kredit harus punya tim audit reguler, proses appeal yang jelas, dan mekanisme koreksi keputusan salah.<br><strong>Pertanyaan kunci:</strong> Jika kendaraan otonom menabrak pejalan kaki, siapa yang bertanggung jawab — pengemudi, produsen, atau pembuat software AI?</div>
+      </div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">📜 10 Commandments of Computer Ethics — Penjelasan Lengkap</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="cmd-grid">
+      <div class="cmd"><div class="cmd-n">1</div><div><div class="cmd-t">Jangan gunakan komputer untuk menyakiti orang lain</div><div class="cmd-d">Termasuk: cyberbullying, doxxing, membuat malware, menggunakan data untuk memanipulasi dan merugikan orang.</div></div></div>
+      <div class="cmd"><div class="cmd-n">2</div><div><div class="cmd-t">Jangan ganggu pekerjaan komputer orang lain</div><div class="cmd-d">Termasuk: mengirim spam, DDoS attack, merusak jaringan atau infrastruktur komputer orang lain.</div></div></div>
+      <div class="cmd"><div class="cmd-n">3</div><div><div class="cmd-t">Jangan mengintip file orang lain</div><div class="cmd-d">Mengakses email, dokumen, atau data privat tanpa izin — meskipun secara teknis memungkinkan — adalah pelanggaran privasi.</div></div></div>
+      <div class="cmd"><div class="cmd-n">4</div><div><div class="cmd-t">Jangan gunakan komputer untuk mencuri</div><div class="cmd-d">Termasuk: hacking ke rekening bank, pencurian identitas digital, phishing, mengakses sistem keuangan ilegal.</div></div></div>
+      <div class="cmd"><div class="cmd-n">5</div><div><div class="cmd-t">Jangan gunakan komputer untuk bersaksi palsu</div><div class="cmd-d">Menyebarkan disinformasi, membuat deepfake, memanipulasi data digital untuk penipuan atau konteks hukum.</div></div></div>
+      <div class="cmd"><div class="cmd-n">6</div><div><div class="cmd-t">Jangan gunakan/salin software tanpa membayar</div><div class="cmd-d">Pembajakan software melanggar hak cipta. Termasuk: software crack, key generator, distribusi ilegal software berlisensi.</div></div></div>
+      <div class="cmd"><div class="cmd-n">7</div><div><div class="cmd-t">Jangan gunakan sumber daya komputer orang lain tanpa izin</div><div class="cmd-d">Termasuk menggunakan server, bandwidth, atau kapasitas orang lain tanpa izin (contoh: cryptojacking).</div></div></div>
+      <div class="cmd"><div class="cmd-n">8</div><div><div class="cmd-t">Jangan ambil alih output intelektual orang lain</div><div class="cmd-d">Plagiarisme digital, mengklaim karya orang lain sebagai milik sendiri, mencuri kode sumber tanpa atribusi.</div></div></div>
+      <div class="cmd"><div class="cmd-n">9</div><div><div class="cmd-t">Pikirkan konsekuensi sosial dari program yang ditulis</div><div class="cmd-d">Developer bertanggung jawab atas dampak sosial software mereka. Algoritma biased atau tools surveillance harus dipertimbangkan dampaknya.</div></div></div>
+      <div class="cmd"><div class="cmd-n">10</div><div><div class="cmd-t">Selalu gunakan komputer dengan pertimbangan dan respek</div><div class="cmd-d">Prinsip umum: pertimbangkan dampak penggunaan teknologi terhadap orang lain. Teknologi adalah alat — penggunaannya harus mencerminkan nilai etis.</div></div></div>
+    </div>
+  </div></div></div>
+
+  <div class="acc"><div class="acc-h" onclick="ta(this)"><div class="acc-title">🤖 3 Persyaratan Model AI yang Bertanggung Jawab</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="cmd-grid">
+      <div class="cmd"><div class="cmd-n">I</div><div><div class="cmd-t">Transparan (Explainable)</div><div class="cmd-d">Model harus dapat dipahami dan dijelaskan. Jika model tidak bisa dipahami → penerapannya bisa menyebabkan konsekuensi tidak terduga yang sulit diperbaiki. Kadang ada tradeoff: model lebih kompleks = lebih akurat tapi kurang transparan.</div></div></div>
+      <div class="cmd"><div class="cmd-n">II</div><div><div class="cmd-t">Tujuan Kuantitatif yang Jelas</div><div class="cmd-d">Model harus memiliki tujuan yang TERUKUR secara objektif. Tanpa tujuan jelas → tidak mungkin mengevaluasi keberhasilan atau standar perbaikan. Contoh BAIK: "Kurangi false positive rate di bawah 5%." Contoh BURUK: "Buat model lebih baik."</div></div></div>
+      <div class="cmd"><div class="cmd-n">III</div><div><div class="cmd-t">Mekanisme Self-Correcting + Audit Reguler</div><div class="cmd-d">Harus ada proses untuk mendeteksi dan mengoreksi kesalahan. Diaudit secara reguler dengan input dan output yang terus dipertimbangkan. Alasan: dunia berubah → concept drift → model yang akurat hari ini mungkin tidak akurat besok.</div></div></div>
+    </div>
+  </div></div></div>
+</div>
+
+<div class="section">
+  <h3><span class="num">11.4</span> Dampak AI pada Pekerjaan & Masyarakat</h3>
+  <div class="acc open"><div class="acc-h" onclick="ta(this)"><div class="acc-title">👷 Pekerjaan yang Terancam, Utopia vs Dystopia & Rekomendasi</div><div class="acc-icon">+</div></div>
+  <div class="acc-body"><div class="acc-inner">
+    <div class="grid2">
+      <div class="card"><div class="card-t t5">Pekerjaan HIGH RISK (terancam)</div><p><strong>Sherman:</strong> <span class="tag tr">Online Marketer</span><span class="tag tr">Financial Analyst</span><span class="tag tr">Anesthesiologist</span><span class="tag tr">Diagnostician</span><span class="tag tr">Reporter</span></p><p style="margin-top:6px;"><strong>Palmer:</strong> <span class="tag tr">Middle Manager</span><span class="tag tr">Report Writer</span><span class="tag tr">Accountant</span><span class="tag tr">Bookkeeper</span></p><p style="margin-top:6px;"><strong>McFarland:</strong> <span class="tag tr">Cashier</span><span class="tag tr">Toll Booth Operator</span><span class="tag tr">Fast-food Employee</span><span class="tag tr">Driver</span></p></div>
+      <div class="card"><div class="card-t t4">Pekerjaan LOW RISK (aman)</div><p><span class="tag tv">Nurse</span><span class="tag tv">Doctor</span><span class="tag tv">Dentist</span><span class="tag tv">Youth Sports Coach</span><span class="tag tv">Social Worker</span></p><p style="margin-top:8px;"><strong>Mengapa aman?</strong> Membutuhkan empati, kreativitas, kecerdasan emosional, fleksibilitas fisik/sosial dalam situasi tidak terduga, dan judgment moral kompleks — sulit diotomatisasi.</p><p style="margin-top:6px;"><strong>Tren:</strong> AI mempercepat polarisasi pasar kerja — pertumbuhan di tier atas (high-skill) dan bawah (low-skill service), kehilangan besar di <em>middle tier</em>.</p></div>
+    </div>
+    <div class="grid2" style="margin-top:10px;">
+      <div class="card"><div class="card-t t4">🌟 Utopia (Optimis)</div><ul><li>AI kurangi kejahatan <strong>20%</strong></li><li>Produktivitas meningkat drastis</li><li>Pekerjaan baru bergaji tinggi diciptakan</li><li>Kualitas hidup meningkat</li><li>Manusia punya lebih banyak waktu luang</li></ul></div>
+      <div class="card"><div class="card-t t5">💀 Dystopia (Pesimis)</div><ul><li><strong>Elon Musk:</strong> "Lebih berbahaya dari nuklir. WW III karena AI."</li><li><strong>Bill Gates:</strong> "Khawatir tentang super intelligence."</li><li><strong>Stephen Hawking:</strong> "Bisa mengakhiri ras manusia."</li><li>Potensi pengangguran massal</li></ul></div>
+    </div>
+    <p style="margin:12px 0 6px;"><strong>McKinsey: Dampak AI pada Pekerjaan</strong></p>
+    <ul class="s">
+      <li>Banyak aktivitas manusia berpotensi diotomatisasi</li>
+      <li>Pertumbuhan produktivitas akan tiga kali lipat dibanding pra-2015</li>
+      <li>AI akan ciptakan banyak pekerjaan baru bergaji tinggi</li>
+      <li>Karena lebih dari separuh dunia masih offline → perubahan tidak akan terlalu cepat</li>
+    </ul>
+    <div class="def def-p" style="margin-top:10px;"><strong>Citizen Data Scientist:</strong> Pengguna bisnis yang belum sepenuhnya terlatih dalam matematika/statistik data science, tetapi belajar menggunakan software tools untuk membangun model analitik bagi kebutuhan bisnis sendiri. Menggunakan tools visual dan intuitif (low-code/no-code). Membantu mengatasi kekurangan data scientist profesional.</div>
+    <p style="margin:12px 0 6px;"><strong>Statistik Pasar AI:</strong> <span class="tag tg">$387,45 miliar (2022)</span> → <span class="tag tg">$1.394,30 miliar (2029)</span> — Fortune Business Insights. Accenture: AI berpotensi tingkatkan profitabilitas +38% pada 2035.</p>
+  </div></div></div>
+</div>
+</div><!-- end tab-ch11 -->
+
+<!-- ════════════════ TAB CHEAT ════════════════ -->
+<div id="tab-cheat" class="tab-content">
+<div class="chapter ch4">
+  <div class="chapter-label l4">CHEAT SHEET FINAL</div>
+  <h2>⚡ Perbedaan Kritis & Angka Wajib Ingat</h2>
+  <p class="chapter-desc">Semua perbedaan konsep yang sering tertukar + formula + angka-angka kritis.</p>
+</div>
+<div class="section">
+  <h3><span class="num">A</span> Perbedaan Konsep yang Sering Tertukar</h3>
+  <table><thead><tr><th>Konsep A</th><th>Perbedaan</th><th>Konsep B</th></tr></thead><tbody>
+    <tr><td><strong>Predictive Analytics</strong> — "What will happen?" memprediksi masa depan</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Prescriptive Analytics</strong> — "What should we do?" rekomendasi tindakan optimal</td></tr>
+    <tr><td><strong>Decision Tree Algoritma (Ch.5)</strong> — Algoritma klasifikasi, ada di predictive analytics</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Decision Tree Skenario (Ch.8)</strong> — Representasi grafis scenario analysis untuk keputusan manajerial</td></tr>
+    <tr><td><strong>Classification</strong> — PREDICTIVE task, ada variabel target kategoris yang diprediksi</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Clustering</strong> — DESCRIPTIVE task, TIDAK ada variabel target, temukan grup alami data</td></tr>
+    <tr><td><strong>What-If Analysis</strong> — FORWARD: ubah INPUT → lihat dampak ke OUTPUT</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Goal Seeking</strong> — BACKWARD: tentukan target OUTPUT → cari nilai INPUT yang dibutuhkan</td></tr>
+    <tr><td><strong>Automatic Sensitivity</strong> — 1 perubahan sekaligus, otomatis oleh LP, cepat</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Trial-and-Error Sensitivity</strong> — banyak perubahan, manual (what-if/goal seeking)</td></tr>
+    <tr><td><strong>Slack Variable</strong> — kelebihan pada ≤ constraint (kapasitas/budget tidak terpakai)</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Surplus Variable</strong> — kelebihan pada ≥ constraint (produksi melebihi minimum yang diminta)</td></tr>
+    <tr><td><strong>Decision under Risk</strong> — probabilitas DIKETAHUI → gunakan Expected Value</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Decision under Uncertainty</strong> — probabilitas TIDAK diketahui → optimistic/pessimistic</td></tr>
+    <tr><td><strong>Optimistic (Maximax)</strong> — Best of BEST: pilih Stocks (15%) → harap kondisi terbaik</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Pessimistic (Maximin)</strong> — Best of WORST: pilih CDs (6.5%) → siap skenario terburuk</td></tr>
+    <tr><td><strong>Simulation</strong> — DESKRIPTIF, tidak ada solusi optimal otomatis, hanya eksperimen</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>LP/Optimization</strong> — PRESKRIPTIF, mencari solusi optimal secara matematis</td></tr>
+    <tr><td><strong>Privacy</strong> — Hak individu atas data pribadi, bebas dari gangguan</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>Security</strong> — Perlindungan sistem informasi dari ancaman eksternal</td></tr>
+    <tr><td><strong>CRISP-DM</strong> — 6 langkah, paling populer industri, sangat iteratif</td><td style="text-align:center;color:var(--muted);">vs</td><td><strong>SEMMA</strong> — 5 langkah, dikembangkan SAS Institute untuk tool SAS mereka</td></tr>
+  </tbody></table>
+</div>
+<div class="section">
+  <h3><span class="num">B</span> Formula Wajib Hafal</h3>
+  <div class="grid3">
+    <div class="card"><div class="card-t t1">Expected Value (EV)</div><div class="formula" style="font-size:12px;">EV = Σ (outcome_i × prob_i)</div><p>EV Bonds = 12(0.5)+6(0.3)+3(0.2) = <strong>8.4%</strong></p></div>
+    <div class="card"><div class="card-t t2">LP Objective (MBI)</div><div class="formula" style="font-size:12px;color:var(--accent2);">Max Z = 8.000X₁ + 12.000X₂</div><p>Solusi: X₁=333.33, X₂=200, Z=$5.066.667</p></div>
+    <div class="card"><div class="card-t t4">Accuracy</div><div class="formula" style="font-size:12px;color:var(--accent4);">Bingo = (benar/total)×100%</div><p>1-Away = benar dalam ±1 kategori dari jawaban benar</p></div>
+  </div>
+</div>
+<div class="section">
+  <h3><span class="num">C</span> Angka-Angka Kritis yang Wajib Diingat</h3>
+  <table><thead><tr><th>Fakta</th><th>Nilai Kunci</th></tr></thead><tbody>
+    <tr><td>Total dataset film Hollywood</td><td class="hi">2.632 film (1998–2006)</td></tr>
+    <tr><td>Training set vs Test set film</td><td class="warn">Train: 1998–2005 | Test: 2006</td></tr>
+    <tr><td>Jumlah kelas prediksi film</td><td class="hi">9 kelas (Flop → Blockbuster)</td></tr>
+    <tr><td>Jumlah variabel independen film</td><td class="warn">7 variabel</td></tr>
+    <tr><td>Best individual model (Bingo)</td><td class="warn">SVM: 55.49%</td></tr>
+    <tr><td>Worst individual model (Bingo)</td><td class="bad">CART: 40.46%</td></tr>
+    <tr><td>Best model overall — Fusion</td><td class="best">Bingo:56.07% | 1-Away:90.75% | SD:0.63</td></tr>
+    <tr><td>MBI Solusi Optimal</td><td class="hi">X₁=333.33 | X₂=200 | Z=$5.066.667</td></tr>
+    <tr><td>Sensitivity MBI (CC-8 -1 unit)</td><td class="warn">Profit naik $1.333,33</td></tr>
+    <tr><td>Goal Seeking MBI (IRR/NPV=0)</td><td class="hi">38.77059%</td></tr>
+    <tr><td>Investment EV tertinggi</td><td class="hi">Bonds: 8.4%</td></tr>
+    <tr><td>Probabilitas (Solid Growth/Stagnation/Inflation)</td><td class="warn">50% / 30% / 20%</td></tr>
+    <tr><td>ROC Curve: random chance vs perfect</td><td class="warn">AUC=0.5 (acak) | AUC=1.0 (sempurna)</td></tr>
+    <tr><td>Pasar AI global 2022 → 2029 (Fortune)</td><td class="hi">$387,45 B → $1.394,30 B</td></tr>
+    <tr><td>Peningkatan profitabilitas oleh AI (Accenture)</td><td class="hi">+38% pada 2035</td></tr>
+    <tr><td>Pengurangan kejahatan oleh AI (Utopia)</td><td class="warn">20% reduction</td></tr>
+    <tr><td>MPAA Rating options</td><td class="warn">5 (G, PG, PG-13, R, NR)</td></tr>
+    <tr><td>Genre options dalam studi film</td><td class="warn">10 genre</td></tr>
+  </tbody></table>
+</div>
+</div><!-- end tab-cheat -->
+
+<!-- ════════════════ TAB QUIZ ════════════════ -->
+<div id="tab-quiz" class="tab-content">
+<div class="chapter" style="border-color:var(--accent3);">
+  <div class="chapter-label" style="color:var(--accent3);">LATIHAN KUIS</div>
+  <h2>🧠 Flashcard Quiz</h2>
+  <p class="chapter-desc">Klik kartu untuk lihat jawaban. Navigasi dengan tombol di bawah. Acak urutan untuk variasi latihan!</p>
+</div>
+<div id="quiz-section" class="section">
+  <div class="quiz-card" id="qcard" onclick="flipCard()">
+    <div class="quiz-q" id="qQ"></div>
+    <div class="quiz-hint">👆 Klik untuk lihat jawaban</div>
+    <div class="quiz-a" id="qA"></div>
+  </div>
+  <div class="quiz-nav">
+    <button onclick="prevQ()">← Sebelumnya</button>
+    <span class="q-counter" id="qCounter"></span>
+    <button onclick="nextQ()">Selanjutnya →</button>
+    <button onclick="shuffleQ()" style="border-color:var(--accent3);color:var(--accent3);">🔀 Acak</button>
+  </div>
+</div>
+</div><!-- end tab-quiz -->
+
+</div><!-- end container -->
+<footer>📚 Final Boss Rangkuman — Inteligensi Bisnis | FASILKOM UI | Kuis 11 Mei 2026 | Semangat! 💪</footer>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.topnav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('btn-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function ta(h){h.parentElement.classList.toggle('open');}
+window.addEventListener('scroll',()=>{
+  const el=document.documentElement;
+  const p=(el.scrollTop/(el.scrollHeight-el.clientHeight))*100;
+  document.getElementById('pf').style.width=p+'%';
+});
+let sTimer;
+function doSearch(v){
+  clearTimeout(sTimer);
+  sTimer=setTimeout(()=>{
+    document.querySelectorAll('.highlight').forEach(el=>{const t=document.createTextNode(el.textContent);el.parentNode.replaceChild(t,el);});
+    if(!v||v.length<2){document.getElementById('searchCount').textContent='';return;}
+    const walker=document.createTreeWalker(document.querySelector('.container'),NodeFilter.SHOW_TEXT,null,false);
+    let cnt=0;const nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const par=node.parentElement;
+      if(['SCRIPT','STYLE','INPUT'].includes(par.tagName))return;
+      const rx=new RegExp('('+v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+      if(rx.test(node.textContent)){
+        const sp=document.createElement('span');
+        sp.innerHTML=node.textContent.replace(rx,'<mark class="highlight">$1</mark>');
+        cnt+=sp.querySelectorAll('.highlight').length;
+        par.replaceChild(sp,node);
+      }
+    });
+    document.getElementById('searchCount').textContent=cnt?(cnt+' ditemukan'):'Tidak ditemukan';
+  },300);
+}
+const qs=[
+  {q:"Apa definisi Data Mining menurut Fayyad et al. (1996)?",a:"Proses NONTRIVIAL mengekstraksi pengetahuan yang VALID (dapat dipercaya), NOVEL (baru), POTENTIALLY USEFUL (potensial bermanfaat), dan UNDERSTANDABLE (dapat dipahami) dari data dalam jumlah besar."},
+  {q:"Sebutkan 6 langkah CRISP-DM secara berurutan.",a:"1. Business Understanding → 2. Data Understanding → 3. Data Preparation → 4. Modeling → 5. Evaluation → 6. Deployment. Sifat: sangat iteratif — bisa kembali ke langkah sebelumnya kapan saja."},
+  {q:"Apa perbedaan utama Predictive Task dan Descriptive Task?",a:"Predictive: memprediksi variabel target yang tidak diketahui (ada target variable). Contoh: Classification, Regression. Descriptive: mendeskripsikan pola TANPA variabel target. Contoh: Clustering, Association Rule."},
+  {q:"Sebutkan 4 langkah k-Means Clustering.",a:"1) Tentukan k & pilih centroid awal acak, 2) Assign setiap titik ke centroid terdekat, 3) Hitung ulang centroid baru (rata-rata cluster), 4) Ulangi 2-3 sampai konvergen (assignment tidak berubah)."},
+  {q:"Dari studi film Hollywood: model mana terbaik overall dan berapa akurasinya?",a:"Fusion (Ensemble Average) terbaik: Bingo=56.07%, 1-Away=90.75%, SD=0.63 (terendah). Individual terbaik=SVM (55.49%). Terburuk=CART (40.46%)."},
+  {q:"Apa saja 3 metriks utama dalam Association Rule Mining?",a:"Support (seberapa sering itemset muncul), Confidence (seberapa sering aturan benar), Lift (seberapa jauh lebih baik dari kebetulan). Algoritma utama: Apriori."},
+  {q:"Apa perbedaan What-If Analysis dan Goal Seeking?",a:"What-If: FORWARD — ubah INPUT, lihat OUTPUT. Contoh: sales 100→120, profit naik $127→$182. Goal Seeking: BACKWARD — tentukan target OUTPUT, cari nilai INPUT. Contoh: IRR agar NPV=0 → 38.77%."},
+  {q:"Sebutkan 4 komponen model LP dan 2 komponen tersembunyi.",a:"4 komponen: (1) Decision Variables, (2) Objective Function, (3) Constraints, (4) Result Variable. 2 tersembunyi: Slack Variables (pada ≤ constraints = kapasitas tidak terpakai) dan Surplus Variables (pada ≥ constraints = produksi melebihi minimum)."},
+  {q:"Berapa solusi optimal MBI Corporation?",a:"Objective: Max Z=8.000X₁+12.000X₂. Solusi: X₁=333,33 unit CC-7, X₂=200 unit CC-8, Z=$5.066.667. Constraints: 300X₁+500X₂≤200.000; 10.000X₁+15.000X₂≤8.000.000; X₁≥100; X₂≥200."},
+  {q:"Hitung EV Bonds: Solid Growth 12%/50%, Stagnation 6%/30%, Inflation 3%/20%",a:"EV Bonds = 12(0.5)+6(0.3)+3(0.2) = 6+1.8+0.6 = 8.4%. Ini tertinggi: Stocks=8.0%, CDs=6.5%. Pilihan terbaik under risk = Bonds."},
+  {q:"Apa perbedaan Decision under Risk vs Uncertainty?",a:"Risk: probabilitas setiap state of nature DIKETAHUI → gunakan Expected Value. Uncertainty: probabilitas TIDAK diketahui → gunakan Optimistic (maximax=Stocks 15%), Pessimistic (maximin=CDs 6.5%), atau Equal Probability."},
+  {q:"Apa itu Simulasi dan mengapa bersifat deskriptif?",a:"Teknik eksperimen dengan komputer pada model sistem. DESKRIPTIF karena tidak ada pencarian solusi optimal otomatis — hanya mendeskripsikan/memprediksi karakteristik sistem. Digunakan HANYA ketika optimisasi numerik tidak memungkinkan."},
+  {q:"Sebutkan 6 Principles of Responsible AI beserta definisi singkatnya.",a:"1. Fairness: perlakukan semua adil, hindari bias. 2. Reliability & Safety: andal & aman di berbagai kondisi. 3. Privacy & Security: hormati privasi, lindungi data. 4. Inclusiveness: berdayakan semua orang. 5. Transparency: sistem harus bisa dipahami & dijelaskan. 6. Accountability: ada pihak bertanggung jawab, audit reguler."},
+  {q:"Apa 3 persyaratan model AI yang bertanggung jawab?",a:"1. TRANSPARAN: jika tidak bisa dipahami → konsekuensi tidak terduga. 2. TUJUAN KUANTITATIF JELAS: harus terukur secara objektif. 3. SELF-CORRECTING + AUDIT REGULER: mekanisme koreksi dan pembaruan terus-menerus."},
+  {q:"Apa definisi Privacy? Sebutkan 2 aturan pengadilan tentang privasi.",a:"Privacy = hak untuk dibiarkan sendiri dan bebas dari gangguan personal yang tidak wajar. Aturan 1: Hak privasi tidak absolut — harus diimbangi kebutuhan masyarakat. Aturan 2: Hak publik untuk mengetahui lebih unggul dari hak privasi individu."},
+  {q:"Jelaskan Target Story sebagai contoh isu privasi.",a:"Target memprediksi kehamilan dari pola pembelian → kirim kupon bayi ke remaja hamil yang orang tuanya belum tahu. Pelajaran: DM sangat powerful TAPI harus pertimbangkan privasi, persetujuan, dan sensitivitas sosial."},
+  {q:"Siapa tokoh Dystopia AI dan apa pendapat mereka?",a:"Elon Musk: 'Lebih berbahaya dari nuklir, WW III karena AI, robots will kill us all.' Bill Gates: 'Khawatir tentang super intelligence.' Stephen Hawking: 'Pengembangan AI penuh bisa mengakhiri ras manusia.'"},
+  {q:"Apa itu Citizen Data Scientist?",a:"Pengguna bisnis yang belum sepenuhnya terlatih dalam matematika/statistik data science, tetapi belajar menggunakan software tools untuk membangun model analitik bagi kebutuhan bisnis sendiri. Menggunakan tools visual/intuitif (low-code/no-code)."},
+  {q:"Apa perbedaan Automatic Sensitivity vs Trial-and-Error Sensitivity?",a:"Automatic: dilakukan otomatis LP, melaporkan range nilai, hanya 1 perubahan sekaligus (keterbatasan). Trial-and-Error: ubah input manual, solve ulang, bisa banyak perubahan — dua pendekatan: What-If (forward) dan Goal Seeking (backward)."},
+  {q:"Sebutkan 5 kriteria evaluasi model data mining.",a:"1. Predictive Accuracy (hit rate pada holdout). 2. Speed (training vs scoring). 3. Robustness (performa pada data noisy). 4. Scalability (efisiensi pada data besar). 5. Interpretability/Transparency (kemudahan pemahaman manusia)."},
+  {q:"Apa itu ROC Curve dan AUC? Nilai AUC untuk random chance dan perfect?",a:"ROC: grafik True Positive Rate vs False Positive Rate. AUC=Area Under ROC Curve. AUC=0.5 → tidak lebih baik dari tebakan acak. AUC=1.0 → klasifikasi sempurna. Cocok untuk skewed class distributions."},
+  {q:"Sebutkan jenis-jenis simulasi yang ada dalam materi.",a:"Deterministic (pasti) vs Stochastic (pakai distribusi probabilitas). Monte Carlo (X=A+B, semua distribusi). Discrete Event (perubahan pada titik waktu tertentu) vs Continuous. Implementasi: Visual, Object-Oriented, Agent-based."},
+  {q:"Apa bahaya Expected Value dalam pengambilan keputusan?",a:"EV bisa menyesatkan karena mengabaikan utility setiap outcome. Contoh: EV=$949.80 tapi ada 0.01% rugi $500.000 katastrofik. Bagi investor bukan milyarder, risiko ini tidak bisa diterima. INGAT: keputusan dibuat HANYA SEKALI."},
+  {q:"Apa perbedaan CRISP-DM, SEMMA, dan KDD?",a:"CRISP-DM: 6 langkah, paling populer industri, iteratif, termasuk Business Understanding & Deployment. SEMMA: 5 langkah (S-E-M-M-A), dikembangkan SAS Institute. KDD: 5 tahap, paling akademik (Selection, Preprocessing, Transformation, DM, Interpretation)."},
+  {q:"Apa saja 5 Mitos Data Mining?",a:"1. DM=crystal ball (SALAH: proses multi-langkah). 2. DM belum siap bisnis (SALAH: sudah siap). 3. DM butuh DB tersendiri (SALAH). 4. Hanya ahli yang bisa DM (SALAH: web tools tersedia). 5. Hanya untuk perusahaan besar (SALAH: siapa saja bisa)."},
+];
+let cur=0;let ord=[...Array(qs.length).keys()];
+function renderQ(){
+  const c=document.getElementById('qcard');c.classList.remove('flipped');
+  document.getElementById('qQ').textContent=qs[ord[cur]].q;
+  document.getElementById('qA').textContent=qs[ord[cur]].a;
+  document.getElementById('qCounter').textContent=(cur+1)+' / '+qs.length;
+}
+function flipCard(){document.getElementById('qcard').classList.toggle('flipped');}
+function nextQ(){cur=(cur+1)%qs.length;renderQ();}
+function prevQ(){cur=(cur-1+qs.length)%qs.length;renderQ();}
+function shuffleQ(){for(let i=ord.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ord[i],ord[j]]=[ord[j],ord[i]];}cur=0;renderQ();}
+renderQ();
+</script>
+</body>
+</html>
