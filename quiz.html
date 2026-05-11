@@ -6,21 +6,21 @@
   <title>Kuis 50 Soal - Business Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f7f3ee;
-      --bg-2: #efe7dc;
-      --ink: #181611;
-      --muted: #5d5a50;
+      --bg: #f5f6f8;
+      --bg-2: #eef1f4;
+      --ink: #243043;
+      --muted: #6b7280;
       --card: #ffffff;
-      --line: #e5ded3;
-      --accent: #0f766e;
-      --accent-2: #d97706;
-      --accent-3: #1d4ed8;
-      --good: #15803d;
-      --bad: #b91c1c;
-      --shadow: 0 18px 40px rgba(30, 26, 18, 0.12);
+      --line: #d5dbe3;
+      --accent: #2563eb;
+      --accent-2: #1d4ed8;
+      --accent-3: #e8f1fb;
+      --good: #2e7d32;
+      --bad: #c62828;
+      --shadow: 0 3px 10px rgba(30, 41, 59, 0.08);
     }
 
     * {
@@ -30,12 +30,9 @@
     }
 
     body {
-      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      font-family: "Source Sans 3", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(1200px 600px at 12% -8%, #f9e5be 0%, rgba(249, 229, 190, 0) 65%),
-        radial-gradient(900px 500px at 90% -10%, #c7efe6 0%, rgba(199, 239, 230, 0) 60%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      background: var(--bg);
       min-height: 100vh;
     }
 
@@ -58,23 +55,22 @@
       gap: 16px;
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px 26px;
+      border-radius: 8px;
+      padding: 18px 22px;
       box-shadow: var(--shadow);
     }
 
     .hero-kicker {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 12px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-2);
       margin-bottom: 8px;
     }
 
     .hero h1 {
-      font-family: "Fraunces", serif;
-      font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+      font-family: "Source Sans 3", sans-serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
       line-height: 1.1;
       margin-bottom: 6px;
     }
@@ -95,10 +91,10 @@
       border: 1px solid var(--line);
       background: var(--card);
       padding: 10px 16px;
-      border-radius: 10px;
-      font-family: "JetBrains Mono", monospace;
+      border-radius: 6px;
+      font-family: "Source Sans 3", sans-serif;
       font-size: 12px;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.3px;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -109,7 +105,7 @@
     }
 
     .btn.primary {
-      background: linear-gradient(120deg, var(--accent), #14b8a6);
+      background: var(--accent);
       color: #fff;
       border-color: transparent;
     }
@@ -127,22 +123,22 @@
 
     .layout {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 260px 1fr;
       gap: 22px;
     }
 
     .panel {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 6px;
       padding: 18px;
-      box-shadow: 0 10px 26px rgba(24, 22, 17, 0.08);
+      box-shadow: var(--shadow);
     }
 
     .panel-title {
-      font-family: "JetBrains Mono", monospace;
+      font-family: "Source Sans 3", sans-serif;
       font-size: 12px;
-      letter-spacing: 1.2px;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 12px;
@@ -150,42 +146,61 @@
 
     .nav-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+      grid-template-columns: repeat(6, minmax(36px, 1fr));
       gap: 8px;
     }
 
     .nav-btn {
       border: 1px solid var(--line);
-      background: #fbfaf7;
-      border-radius: 8px;
-      padding: 8px 0;
+      background: #ffffff;
+      border-radius: 4px;
+      padding: 7px 0;
+      position: relative;
       font-size: 12px;
-      font-family: "JetBrains Mono", monospace;
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .nav-btn:hover {
-      border-color: var(--accent-2);
-      color: var(--accent-2);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .nav-btn.current {
       border-color: var(--accent);
       color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
     }
 
     .nav-btn.answered.correct {
       background: #e7f6ef;
-      border-color: #16a34a;
-      color: #166534;
+      border-color: var(--good);
+      color: var(--good);
     }
 
     .nav-btn.answered.incorrect {
       background: #fdecec;
-      border-color: #ef4444;
-      color: #9f1239;
+      border-color: var(--bad);
+      color: var(--bad);
+    }
+
+    .nav-btn.answered.correct::after,
+    .nav-btn.answered.incorrect::after {
+      position: absolute;
+      bottom: 2px;
+      right: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .nav-btn.answered.correct::after {
+      content: "✓";
+    }
+
+    .nav-btn.answered.incorrect::after {
+      content: "✕";
     }
 
     .legend {
@@ -221,15 +236,19 @@
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 12px;
-      font-family: "JetBrains Mono", monospace;
+      font-family: "Source Sans 3", sans-serif;
       font-size: 12px;
       color: var(--muted);
     }
 
     .quiz-question {
-      font-family: "Fraunces", serif;
-      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-      margin-bottom: 14px;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      margin-bottom: 12px;
+      background: var(--accent-3);
+      border: 1px solid #cbdff4;
+      border-radius: 6px;
+      padding: 12px 14px;
     }
 
     .options {
@@ -244,8 +263,8 @@
       gap: 12px;
       border: 1px solid var(--line);
       background: #fcfbf8;
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 6px;
+      padding: 10px 12px;
       text-align: left;
       font-size: 14px;
       cursor: pointer;
@@ -254,7 +273,7 @@
 
     .opt-btn:hover {
       border-color: var(--accent);
-      box-shadow: 0 6px 16px rgba(15, 118, 110, 0.12);
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
     }
 
     .opt-btn:disabled {
@@ -263,31 +282,30 @@
     }
 
     .opt-btn.correct {
-      border-color: #22c55e;
-      background: #ecfdf3;
+      border-color: var(--good);
+      background: #e7f6ef;
     }
 
     .opt-btn.wrong {
-      border-color: #f87171;
-      background: #fef2f2;
+      border-color: var(--bad);
+      background: #fdecec;
     }
 
     .opt-btn.selected {
-      outline: 2px solid rgba(29, 78, 216, 0.2);
+      outline: 2px solid rgba(37, 99, 235, 0.18);
     }
 
     .opt-label {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: #f2ede4;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background: transparent;
       color: var(--muted);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: "JetBrains Mono", monospace;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .opt-text {
@@ -295,10 +313,10 @@
     }
 
     .explain {
-      border-left: 4px solid var(--accent-3);
-      background: #f3f6ff;
+      border-left: 4px solid #f0b429;
+      background: #fff8e1;
       padding: 12px 14px;
-      border-radius: 12px;
+      border-radius: 6px;
       display: grid;
       gap: 6px;
       margin-bottom: 18px;
@@ -310,7 +328,7 @@
 
     .explain-title {
       font-weight: 600;
-      color: #1e3a8a;
+      color: #8a5a00;
     }
 
     .quiz-actions {
@@ -367,7 +385,7 @@
         </div>
       </aside>
 
-      <section class="panel">
+      <section class="panel quiz-panel">
         <div class="quiz-meta">
           <div id="progress">Soal 1 dari 50</div>
           <div id="status">Belum dijawab</div>
@@ -387,92 +405,213 @@
   <script>
     const questions = [
       {
-        question: "Definisi Data Mining menurut Fayyad et al. (1996) paling tepat adalah",
+        question: "Definisi yang paling tepat untuk Business Intelligence (BI) adalah",
         options: [
-          "Proses nontrivial mengekstraksi pengetahuan yang valid, novel, potentially useful, dan understandable dari data besar",
-          "Proses menyimpan data ke data warehouse",
-          "Proses membuat dashboard dari data transaksi",
-          "Proses menghapus data duplikat"
+          "Proses mengubah data menjadi informasi dan insight untuk mendukung keputusan bisnis",
+          "Proses menyimpan data operasional ke server",
+          "Proses menghapus data duplikat secara otomatis",
+          "Proses membuat aplikasi mobile"
         ],
         answer: 0,
-        explain: "Data mining menekankan ekstraksi pengetahuan yang valid, baru, berguna, dan bisa dipahami dari data besar, bukan sekadar penyimpanan atau visualisasi."
+        explain: "BI berfokus pada mengubah data menjadi insight yang membantu pengambilan keputusan."
       },
       {
-        question: "Kata kunci nontrivial dalam definisi Data Mining berarti",
+        question: "Urutan level analytics yang umum digunakan adalah",
         options: [
-          "Dapat dilakukan manual dengan kalkulasi sederhana",
-          "Membutuhkan algoritma kompleks dan tidak bisa dilakukan manual",
-          "Tidak memerlukan data besar",
-          "Hanya untuk visualisasi"
-        ],
-        answer: 1,
-        explain: "Nontrivial berarti prosesnya tidak sederhana dan memerlukan algoritma yang tidak bisa dikerjakan manual."
-      },
-      {
-        question: "Makna valid pada definisi Data Mining adalah",
-        options: [
-          "Pola harus baru",
-          "Pola harus akurat dan dapat dipercaya, divalidasi dengan data uji",
-          "Pola harus mudah divisualkan",
-          "Pola harus menguntungkan"
-        ],
-        answer: 1,
-        explain: "Valid berarti pola harus akurat dan dapat dipercaya, biasanya diuji pada data yang belum pernah dilihat."
-      },
-      {
-        question: "Makna novel pada definisi Data Mining adalah",
-        options: [
-          "Pola sudah diketahui",
-          "Pengetahuan baru yang belum diketahui sebelumnya",
-          "Pola mudah dipahami",
-          "Pola hanya untuk eksperimen"
-        ],
-        answer: 1,
-        explain: "Novel berarti pengetahuan yang dihasilkan harus baru, bukan sekadar mengulang hal yang sudah diketahui."
-      },
-      {
-        question: "Makna understandable pada definisi Data Mining adalah",
-        options: [
-          "Tidak perlu dijelaskan pada manusia",
-          "Hasil dapat dipahami oleh pengambil keputusan",
-          "Hanya dapat dipahami oleh mesin",
-          "Selalu berupa grafik"
-        ],
-        answer: 1,
-        explain: "Understandable menekankan bahwa hasil data mining harus dapat dipahami manusia, terutama pengambil keputusan."
-      },
-      {
-        question: "Mengapa istilah Data Mining disebut misnomer",
-        options: [
-          "Yang digali bukan data, tetapi knowledge atau pola tersembunyi",
-          "Karena data tidak digunakan",
-          "Karena hanya untuk data kecil",
-          "Karena selalu memakai database baru"
+          "Descriptive -> Predictive -> Prescriptive",
+          "Prescriptive -> Predictive -> Descriptive",
+          "Predictive -> Descriptive -> Prescriptive",
+          "Descriptive -> Prescriptive -> Predictive"
         ],
         answer: 0,
-        explain: "Istilah ini dianggap misnomer karena yang digali sebenarnya adalah pengetahuan atau pola dalam data, bukan datanya."
+        explain: "Urutan umum adalah descriptive, predictive, lalu prescriptive."
       },
       {
-        question: "Manakah yang BUKAN faktor pendorong data mining",
+        question: "Komponen utama DSS (Decision Support System) adalah",
         options: [
-          "Konsolidasi data ke data warehouse",
-          "Peningkatan kemampuan komputasi dan biaya turun",
-          "Konversi informasi ke bentuk digital",
-          "Kewajiban memakai database terpisah khusus"
+          "Data management, model management, user interface, knowledge base",
+          "ETL, OLAP, dashboard, data mart",
+          "Input layer, hidden layer, output layer, loss function",
+          "Source code, compiler, server, client"
         ],
-        answer: 3,
-        explain: "Kemajuan teknologi membuat database khusus tidak lagi diperlukan, sehingga itu bukan faktor pendorong."
+        answer: 0,
+        explain: "DSS umumnya terdiri dari manajemen data, model, antarmuka pengguna, dan basis pengetahuan."
       },
       {
-        question: "Langkah ke-3 CRISP-DM adalah",
+        question: "DSS paling cocok digunakan untuk keputusan",
+        options: [
+          "Terstruktur penuh",
+          "Semi-terstruktur atau tidak terstruktur",
+          "Hanya keputusan rutin",
+          "Hanya keputusan jangka pendek"
+        ],
+        answer: 1,
+        explain: "DSS membantu pengambilan keputusan yang tidak sepenuhnya terstruktur."
+      },
+      {
+        question: "5V Big Data mencakup",
+        options: [
+          "Volume, Velocity, Variety, Veracity, Value",
+          "Vision, Voice, Value, Volume, Version",
+          "Vector, Volume, Visual, Verify, Value",
+          "Volume, Variance, Virtual, Value, Voice"
+        ],
+        answer: 0,
+        explain: "5V Big Data adalah volume, velocity, variety, veracity, dan value."
+      },
+      {
+        question: "Ciri utama data warehouse adalah",
+        options: [
+          "Subject-oriented, integrated, time-variant, non-volatile",
+          "Realtime-only, volatile, single-table",
+          "Tidak menyimpan data historis",
+          "Hanya menyimpan data log aplikasi"
+        ],
+        answer: 0,
+        explain: "Data warehouse bersifat terintegrasi, berorientasi subjek, historis, dan non-volatile."
+      },
+      {
+        question: "ETL adalah singkatan dari",
+        options: [
+          "Extract, Transform, Load",
+          "Explore, Test, Learn",
+          "Evaluate, Track, Log",
+          "Encode, Transfer, Label"
+        ],
+        answer: 0,
+        explain: "ETL berarti Extract, Transform, dan Load."
+      },
+      {
+        question: "Perbedaan OLAP dan OLTP yang benar adalah",
+        options: [
+          "OLAP untuk analisis, OLTP untuk transaksi operasional",
+          "OLAP untuk transaksi, OLTP untuk analisis",
+          "Keduanya sama persis",
+          "OLAP hanya untuk data tidak terstruktur"
+        ],
+        answer: 0,
+        explain: "OLAP digunakan untuk analisis, OLTP untuk transaksi harian."
+      },
+      {
+        question: "Peran fact table dibanding dimension table adalah",
+        options: [
+          "Fact menyimpan metrik, dimension menyimpan konteks",
+          "Fact menyimpan teks deskriptif, dimension menyimpan angka",
+          "Fact hanya untuk metadata",
+          "Dimension hanya untuk log sistem"
+        ],
+        answer: 0,
+        explain: "Fact table berisi measure, dimension table berisi atribut konteks."
+      },
+      {
+        question: "KPI (Key Performance Indicator) adalah",
+        options: [
+          "Ukuran kinerja kunci untuk menilai pencapaian tujuan",
+          "Satu jenis algoritma klasifikasi",
+          "Format tabel database",
+          "Teknik normalisasi data"
+        ],
+        answer: 0,
+        explain: "KPI digunakan untuk mengukur keberhasilan terhadap tujuan bisnis."
+      },
+      {
+        question: "Prinsip dashboard yang baik adalah",
+        options: [
+          "Ringkas, fokus pada informasi penting, mudah dibaca",
+          "Memuat semua data tanpa filter",
+          "Wajib berisi tabel panjang",
+          "Lebih banyak warna lebih baik"
+        ],
+        answer: 0,
+        explain: "Dashboard seharusnya ringkas, fokus, dan mudah dipahami."
+      },
+      {
+        question: "Penanganan missing values yang umum adalah",
+        options: [
+          "Imputasi atau menghapus baris dengan pertimbangan",
+          "Selalu diabaikan",
+          "Mengganti dengan nol tanpa analisis",
+          "Mengubah semua variabel menjadi teks"
+        ],
+        answer: 0,
+        explain: "Missing values dapat diimputasi atau dihapus tergantung konteks."
+      },
+      {
+        question: "Tujuan normalisasi atau standardisasi fitur adalah",
+        options: [
+          "Menyamakan skala agar model tidak bias pada fitur tertentu",
+          "Menghapus fitur penting",
+          "Menambah jumlah data",
+          "Mengubah data menjadi kategori"
+        ],
+        answer: 0,
+        explain: "Normalisasi/standardisasi membuat skala fitur sebanding."
+      },
+      {
+        question: "Encoding kategorikal yang umum untuk model ML adalah",
+        options: [
+          "One-hot encoding",
+          "Feature scaling",
+          "Cross validation",
+          "Pruning"
+        ],
+        answer: 0,
+        explain: "One-hot encoding mengubah kategori menjadi fitur biner."
+      },
+      {
+        question: "Tujuan utama data preprocessing adalah",
+        options: [
+          "Meningkatkan kualitas data dan kesiapan untuk analisis",
+          "Menghilangkan kebutuhan model",
+          "Mengganti semua data dengan rata-rata",
+          "Menghapus semua outlier tanpa alasan"
+        ],
+        answer: 0,
+        explain: "Preprocessing menyiapkan data agar analisis dan model lebih andal."
+      },
+      {
+        question: "Definisi data mining menurut Fayyad et al. (1996) adalah",
+        options: [
+          "Proses nontrivial mengekstraksi pengetahuan yang valid, novel, berguna, dan dapat dipahami",
+          "Proses menyalin data antar server",
+          "Proses membuat dashboard otomatis",
+          "Proses menyimpan data ke data warehouse"
+        ],
+        answer: 0,
+        explain: "Data mining fokus pada ekstraksi pengetahuan bermakna dari data."
+      },
+      {
+        question: "Nontrivial pada definisi data mining berarti",
+        options: [
+          "Membutuhkan algoritma yang tidak sederhana dan tidak manual",
+          "Dapat dilakukan tanpa komputasi",
+          "Tidak membutuhkan data besar",
+          "Selalu menghasilkan grafik"
+        ],
+        answer: 0,
+        explain: "Nontrivial menandakan prosesnya kompleks dan membutuhkan algoritma."
+      },
+      {
+        question: "Langkah pertama CRISP-DM adalah",
         options: [
           "Business Understanding",
-          "Data Understanding",
           "Data Preparation",
+          "Modeling",
           "Deployment"
         ],
-        answer: 2,
-        explain: "Urutan CRISP-DM adalah Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment."
+        answer: 0,
+        explain: "CRISP-DM dimulai dari pemahaman tujuan bisnis."
+      },
+      {
+        question: "Langkah ketiga CRISP-DM adalah",
+        options: [
+          "Data Preparation",
+          "Business Understanding",
+          "Evaluation",
+          "Deployment"
+        ],
+        answer: 0,
+        explain: "Urutannya: Business Understanding, Data Understanding, Data Preparation."
       },
       {
         question: "SEMMA adalah singkatan dari",
@@ -486,455 +625,334 @@
         explain: "SEMMA dikembangkan SAS dan berarti Sample, Explore, Modify, Model, Assess."
       },
       {
-        question: "Urutan KDD yang benar setelah Preprocessing adalah",
+        question: "Pada KDD, tahap setelah preprocessing adalah",
         options: [
-          "Selection",
           "Transformation",
-          "Evaluation",
-          "Deployment"
+          "Selection",
+          "Deployment",
+          "Evaluation"
         ],
-        answer: 1,
+        answer: 0,
         explain: "KDD: Selection, Preprocessing, Transformation, Data Mining, Interpretation/Evaluation."
       },
       {
-        question: "Perbedaan utama predictive task dan descriptive task adalah",
+        question: "Perbedaan utama predictive dan descriptive task adalah",
         options: [
-          "Predictive tidak punya target, descriptive punya target",
-          "Predictive memiliki target variable, descriptive tidak",
-          "Keduanya selalu memakai target variable",
-          "Descriptive selalu lebih akurat"
+          "Predictive memprediksi target, descriptive mencari pola tanpa target",
+          "Predictive tanpa target, descriptive dengan target",
+          "Keduanya selalu memprediksi masa depan",
+          "Descriptive hanya untuk data time series"
         ],
-        answer: 1,
-        explain: "Predictive task memprediksi target variable, sedangkan descriptive task tidak memiliki target."
+        answer: 0,
+        explain: "Predictive memiliki target, descriptive tidak memiliki target."
       },
       {
-        question: "Classification termasuk predictive task karena",
+        question: "Classification digunakan ketika target",
         options: [
-          "Target berupa angka kontinu",
-          "Target berupa kategori",
-          "Tidak ada target",
-          "Hanya untuk time series"
+          "Berkategori",
+          "Numerik kontinu",
+          "Tidak diketahui",
+          "Selalu berupa teks panjang"
         ],
-        answer: 1,
-        explain: "Classification memprediksi label atau kategori, jadi targetnya bersifat kategoris."
+        answer: 0,
+        explain: "Classification memprediksi label atau kategori."
       },
       {
         question: "Regression digunakan ketika target",
         options: [
-          "Kategoris",
           "Numerik kontinu",
-          "Tidak diketahui sama sekali",
-          "Berbentuk teks panjang"
+          "Berkategori",
+          "Tidak ada target",
+          "Berbentuk gambar"
         ],
-        answer: 1,
-        explain: "Regression dipakai untuk memprediksi nilai numerik kontinu."
+        answer: 0,
+        explain: "Regression memprediksi nilai numerik kontinu."
       },
       {
-        question: "Clustering merupakan",
+        question: "Kriteria pemisahan umum pada decision tree adalah",
         options: [
-          "Predictive dengan target",
-          "Descriptive tanpa target, mengelompokkan data berdasarkan kemiripan",
-          "Metode optimisasi",
-          "Metode evaluasi"
+          "Information Gain atau Gini",
+          "Support atau Lift",
+          "RMSE atau MAE",
+          "Momentum atau Variance"
         ],
-        answer: 1,
-        explain: "Clustering adalah descriptive task yang mencari grup alami tanpa target variable."
+        answer: 0,
+        explain: "Decision tree memakai kriteria seperti Information Gain atau Gini."
       },
       {
-        question: "Kriteria splitting yang digunakan CART pada decision tree adalah",
+        question: "Pruning dilakukan untuk",
         options: [
-          "Information Gain",
-          "Gini Impurity",
-          "Chi-square",
-          "Lift"
+          "Mengurangi overfitting",
+          "Menambah jumlah fitur",
+          "Menghapus data valid",
+          "Memperbesar learning rate"
         ],
-        answer: 1,
-        explain: "CART menggunakan Gini Impurity sebagai kriteria pemisahan."
+        answer: 0,
+        explain: "Pruning membantu generalisasi dan mengurangi overfitting."
       },
       {
-        question: "Manakah yang BUKAN stopping criterion decision tree",
+        question: "Tujuan utama SVM adalah",
         options: [
-          "Semua data di node sudah satu kelas",
-          "Tidak ada atribut lagi",
-          "Node terlalu kecil",
-          "Memilih atribut dengan information gain tertinggi"
+          "Menemukan hyperplane dengan margin terlebar",
+          "Menemukan centroid terbaik",
+          "Membangun aturan asosiasi",
+          "Mengurangi dimensi tanpa kehilangan data"
         ],
-        answer: 3,
-        explain: "Memilih atribut dengan information gain tertinggi adalah kriteria pemisahan, bukan kriteria berhenti."
+        answer: 0,
+        explain: "SVM memaksimalkan margin antar kelas."
       },
       {
-        question: "Perbedaan pre-pruning dan post-pruning adalah",
+        question: "Kelemahan umum ANN adalah",
         options: [
-          "Pre-pruning membangun pohon penuh lalu dipangkas",
-          "Post-pruning menghentikan sebelum pohon selesai",
-          "Pre-pruning menghentikan lebih awal, post-pruning memangkas setelah pohon penuh",
-          "Keduanya sama"
-        ],
-        answer: 2,
-        explain: "Pre-pruning menghentikan pembentukan pohon lebih awal, sedangkan post-pruning memangkas setelah pohon lengkap."
-      },
-      {
-        question: "Pada ANN, penyesuaian bobot selama training dilakukan melalui",
-        options: [
-          "Cross validation",
-          "Backpropagation",
-          "Gini index",
-          "k-means"
-        ],
-        answer: 1,
-        explain: "Backpropagation digunakan untuk menyesuaikan bobot agar error berkurang."
-      },
-      {
-        question: "Kelemahan utama ANN yang disebut di materi adalah",
-        options: [
-          "Tidak bisa menangani data besar",
-          "Black box, sulit diinterpretasi",
+          "Black box dan sulit diinterpretasi",
           "Tidak bisa non-linear",
-          "Tidak akurat"
-        ],
-        answer: 1,
-        explain: "ANN sering disebut black box karena sulit dijelaskan secara interpretatif."
-      },
-      {
-        question: "SVM mencari",
-        options: [
-          "Hyperplane dengan margin terlebar",
-          "Centroid terbaik",
-          "Aturan asosiasi",
-          "Model linier sederhana tanpa margin"
+          "Tidak bisa menangani data besar",
+          "Selalu akurat 100 persen"
         ],
         answer: 0,
-        explain: "SVM bertujuan memaksimalkan margin antar kelas dengan hyperplane terbaik."
+        explain: "ANN sering sulit dijelaskan sehingga disebut black box."
       },
       {
-        question: "Support vectors adalah",
+        question: "k-means adalah",
         options: [
-          "Data paling jauh dari hyperplane",
-          "Data paling dekat dengan hyperplane",
-          "Nilai rata-rata cluster",
-          "Output model"
-        ],
-        answer: 1,
-        explain: "Support vectors adalah titik data yang paling dekat dengan hyperplane pemisah."
-      },
-      {
-        question: "Langkah ke-2 pada k-means adalah",
-        options: [
-          "Menentukan k dan centroid awal",
-          "Mengassign tiap titik ke centroid terdekat",
-          "Menghitung ulang centroid baru",
-          "Menentukan stopping criteria"
-        ],
-        answer: 1,
-        explain: "Setelah menentukan k dan centroid awal, langkah berikutnya adalah assign setiap titik ke centroid terdekat."
-      },
-      {
-        question: "Tantangan utama k-means adalah",
-        options: [
-          "Menentukan nilai k optimal",
-          "Tidak bisa menangani data numerik",
-          "Tidak membutuhkan centroid",
-          "Selalu supervised"
+          "Clustering tanpa target untuk mengelompokkan data mirip",
+          "Klasifikasi supervised",
+          "Metode optimisasi linear",
+          "Algoritma rule mining"
         ],
         answer: 0,
-        explain: "Menentukan k yang optimal adalah tantangan utama, biasanya memakai elbow method atau silhouette."
+        explain: "k-means termasuk unsupervised clustering."
       },
       {
-        question: "Metrik utama association rule mining adalah",
+        question: "Metrik utama pada association rule mining adalah",
         options: [
           "Support, Confidence, Lift",
           "Accuracy, Recall, F1",
           "RMSE, MAE, MAPE",
-          "Gini, Entropy, Chi-square"
+          "Entropy, Gini, Chi-square"
         ],
         answer: 0,
-        explain: "Association rule mining menggunakan support, confidence, dan lift."
+        explain: "Association rules dievaluasi dengan support, confidence, dan lift."
       },
       {
-        question: "Algoritma utama untuk association rules pada materi adalah",
+        question: "ROC/AUC digunakan untuk",
         options: [
-          "Apriori",
-          "CART",
-          "KNN",
-          "Backpropagation"
+          "Mengukur kemampuan model membedakan kelas",
+          "Mengukur jumlah data",
+          "Mengukur waktu training",
+          "Mengganti confusion matrix"
         ],
         answer: 0,
-        explain: "Apriori adalah algoritma klasik untuk association rule mining."
+        explain: "ROC/AUC menggambarkan tradeoff TPR vs FPR dan kemampuan klasifikasi."
       },
       {
-        question: "Pada studi film Hollywood, model terbaik overall adalah",
+        question: "Prescriptive analytics menjawab",
         options: [
-          "CART",
-          "ANN",
-          "Fusion (Average)",
-          "Random Forest"
-        ],
-        answer: 2,
-        explain: "Fusion (average) menjadi yang terbaik overall dengan Bingo 56.07% dan 1-Away 90.75%."
-      },
-      {
-        question: "Manakah yang BUKAN kriteria evaluasi model data mining",
-        options: [
-          "Predictive accuracy",
-          "Speed",
-          "Interpretability",
-          "Colorfulness"
-        ],
-        answer: 3,
-        explain: "Colorfulness bukan metrik evaluasi model; yang digunakan adalah accuracy, speed, robustness, scalability, dan interpretability."
-      },
-      {
-        question: "k-fold cross validation berarti",
-        options: [
-          "Data dibagi dua: train dan test sekali saja",
-          "Model dilatih k kali dan setiap fold menjadi test set tepat sekali",
-          "Hanya memakai data training tanpa test",
-          "Data uji dipakai untuk training"
-        ],
-        answer: 1,
-        explain: "Dalam k-fold CV, data dibagi k bagian dan setiap bagian dipakai sebagai test tepat sekali."
-      },
-      {
-        question: "Nilai AUC 0.5 pada ROC berarti",
-        options: [
-          "Klasifikasi sempurna",
-          "Lebih buruk dari acak",
-          "Sama dengan tebakan acak",
-          "Akurasi 100%"
-        ],
-        answer: 2,
-        explain: "AUC 0.5 menunjukkan performa setara dengan tebakan acak."
-      },
-      {
-        question: "Jumlah film pada dataset Hollywood adalah",
-        options: [
-          "2,632",
-          "632",
-          "26,320",
-          "200"
+          "Apa yang sebaiknya dilakukan",
+          "Apa yang terjadi",
+          "Mengapa terjadi",
+          "Data apa yang hilang"
         ],
         answer: 0,
-        explain: "Dataset studi film berisi 2,632 film (1998-2006)."
+        explain: "Prescriptive fokus pada rekomendasi tindakan terbaik."
       },
       {
-        question: "Jumlah kelas output pada studi film Hollywood adalah",
+        question: "Komponen model Linear Programming adalah",
         options: [
-          "5",
-          "7",
-          "9",
-          "12"
-        ],
-        answer: 2,
-        explain: "Output diklasifikasikan ke 9 kelas dari flop sampai blockbuster."
-      },
-      {
-        question: "Jumlah variabel independen pada studi film Hollywood adalah",
-        options: [
-          "5",
-          "7",
-          "9",
-          "12"
-        ],
-        answer: 1,
-        explain: "Studi film memakai 7 variabel independen sebagai predictor."
-      },
-      {
-        question: "Best individual model (Bingo) pada studi film adalah",
-        options: [
-          "CART 40.46%",
-          "SVM 55.49%",
-          "Boosted Tree 54.05%",
-          "Random Forest 54.62%"
-        ],
-        answer: 1,
-        explain: "SVM adalah best individual model dengan Bingo 55.49%."
-      },
-      {
-        question: "Decision tree sebagai representasi skenario keputusan (bukan algoritma klasifikasi) ada di",
-        options: [
-          "Chapter 5",
-          "Chapter 8",
-          "Chapter 11",
-          "Cheat sheet saja"
-        ],
-        answer: 1,
-        explain: "Decision tree sebagai skenario keputusan dibahas pada Chapter 8 (decision analysis)."
-      },
-      {
-        question: "Prescriptive analytics menjawab pertanyaan",
-        options: [
-          "What happened",
-          "What will happen",
-          "What should we do",
-          "Why did it happen"
-        ],
-        answer: 2,
-        explain: "Prescriptive analytics fokus pada rekomendasi tindakan optimal: what should we do."
-      },
-      {
-        question: "Linear Programming mengharuskan",
-        options: [
-          "Semua hubungan matematis linear",
-          "Data harus kategori",
-          "Selalu memakai neural network",
-          "Hanya cocok untuk data kecil"
+          "Decision variables, objective function, constraints",
+          "Training data, test data, validation data",
+          "Centroid, cluster, silhouette",
+          "Precision, recall, F1"
         ],
         answer: 0,
-        explain: "LP hanya valid jika semua hubungan matematis bersifat linear."
+        explain: "LP terdiri dari variabel keputusan, fungsi tujuan, dan kendala."
       },
       {
-        question: "Decision variable dalam LP adalah",
+        question: "Decision variable adalah",
         options: [
-          "Variabel yang dikontrol pengambil keputusan",
-          "Variabel hasil yang tidak bisa diubah",
-          "Variabel acak",
-          "Variabel yang selalu negatif"
+          "Variabel yang nilainya ditentukan pengambil keputusan",
+          "Variabel hasil yang selalu tetap",
+          "Variabel acak tanpa kontrol",
+          "Variabel yang tidak berpengaruh"
         ],
         answer: 0,
-        explain: "Decision variable adalah variabel yang nilainya ditentukan pengambil keputusan."
+        explain: "Decision variable dikontrol untuk mencapai tujuan."
       },
       {
-        question: "Slack variable muncul pada constraint tipe",
+        question: "Perbedaan slack dan surplus adalah",
         options: [
-          ">= dan berarti kelebihan produksi",
-          "<= dan berarti kapasitas tidak terpakai",
-          "= dan berarti deviasi",
-          "Semua tipe sama"
-        ],
-        answer: 1,
-        explain: "Slack muncul pada constraint <= dan menunjukkan sumber daya yang tidak terpakai."
-      },
-      {
-        question: "Surplus variable muncul pada constraint tipe",
-        options: [
-          ">= dan berarti produksi melebihi minimum",
-          "<= dan berarti kapasitas tidak terpakai",
-          "= dan berarti error",
-          "Hanya pada objective function"
+          "Slack pada <=, surplus pada >=",
+          "Slack pada >=, surplus pada <=",
+          "Keduanya sama",
+          "Keduanya hanya ada pada objective function"
         ],
         answer: 0,
-        explain: "Surplus muncul pada constraint >= dan menunjukkan kelebihan di atas batas minimum."
+        explain: "Slack menunjukkan sisa pada <=, surplus menunjukkan kelebihan pada >=."
       },
       {
-        question: "Objective function MBI Corporation adalah",
+        question: "Tujuan sensitivity analysis adalah",
         options: [
-          "Max Z = 300X1 + 500X2",
-          "Max Z = 8,000X1 + 12,000X2",
-          "Min Z = 8,000X1 + 12,000X2",
-          "Max Z = 10,000X1 + 15,000X2"
-        ],
-        answer: 1,
-        explain: "Dalam kasus MBI, objective function adalah Max Z = 8,000X1 + 12,000X2."
-      },
-      {
-        question: "Metode Solver yang digunakan untuk LP pada materi adalah",
-        options: [
-          "Gradient Descent",
-          "Simplex LP",
-          "k-means",
-          "Monte Carlo"
-        ],
-        answer: 1,
-        explain: "Excel Solver menggunakan metode Simplex LP untuk menyelesaikan model LP."
-      },
-      {
-        question: "Automatic sensitivity analysis",
-        options: [
-          "Dilakukan manual dengan banyak perubahan sekaligus",
-          "Dilakukan otomatis oleh software dan hanya satu perubahan sekaligus",
-          "Selalu memakai goal seeking",
-          "Tidak tersedia di Solver"
-        ],
-        answer: 1,
-        explain: "Automatic sensitivity dilakukan otomatis dan biasanya hanya mengubah satu parameter pada satu waktu."
-      },
-      {
-        question: "Goal seeking bersifat",
-        options: [
-          "Forward: ubah input, lihat output",
-          "Backward: tentukan output, cari input",
-          "Random: pilih input acak",
-          "Tidak memakai model"
-        ],
-        answer: 1,
-        explain: "Goal seeking menentukan output target terlebih dulu lalu mencari input yang diperlukan."
-      },
-      {
-        question: "Metode penanganan multiple goals yang BUKAN termasuk materi adalah",
-        options: [
-          "Utility theory",
-          "Goal programming",
-          "Points system",
-          "k-means clustering"
-        ],
-        answer: 3,
-        explain: "k-means adalah teknik clustering, bukan metode penanganan multiple goals."
-      },
-      {
-        question: "Decision table terdiri dari",
-        options: [
-          "Decision variables, uncontrollable variables, result variables",
-          "Decision tree, confusion matrix, ROC",
-          "Input layer, hidden layer, output layer",
-          "Support, confidence, lift"
+          "Menilai dampak perubahan input terhadap solusi",
+          "Menambah jumlah data",
+          "Menghapus constraint",
+          "Menyamakan skala fitur"
         ],
         answer: 0,
-        explain: "Decision table berisi alternatif keputusan, state of nature, dan outcome."
+        explain: "Sensitivity analysis memeriksa seberapa robust solusi terhadap perubahan."
       },
       {
-        question: "Decision under risk ditangani dengan",
+        question: "Perbedaan what-if dan goal seeking adalah",
+        options: [
+          "What-if forward, goal seeking backward",
+          "What-if backward, goal seeking forward",
+          "Keduanya sama",
+          "Keduanya hanya untuk klasifikasi"
+        ],
+        answer: 0,
+        explain: "What-if mengubah input untuk melihat output, goal seeking mencari input untuk target output."
+      },
+      {
+        question: "Decision under risk menggunakan",
         options: [
           "Expected Value karena probabilitas diketahui",
-          "Optimistic maximax",
-          "Pessimistic maximin",
-          "Tidak memakai probabilitas"
+          "Maximin karena probabilitas tidak diketahui",
+          "Tebakan acak",
+          "ROC/AUC"
         ],
         answer: 0,
-        explain: "Pada risk, probabilitas diketahui sehingga digunakan Expected Value."
+        explain: "Jika probabilitas diketahui, gunakan expected value."
       },
       {
-        question: "Optimistic (maximax) memilih",
+        question: "Decision under uncertainty biasanya menggunakan",
         options: [
-          "Best of worst",
-          "Best of best",
-          "Average of all",
-          "Median outcome"
+          "Maximin atau Maximax",
+          "Expected Value",
+          "ROC/AUC",
+          "Cross validation"
         ],
-        answer: 1,
-        explain: "Maximax mengambil hasil terbaik dari semua alternatif (best of best)."
+        answer: 0,
+        explain: "Saat probabilitas tidak diketahui, gunakan pendekatan maximin/maximax."
       },
       {
-        question: "Simulasi menurut materi adalah",
+        question: "Simulasi digunakan ketika",
         options: [
-          "Prescriptive yang mencari solusi optimal otomatis",
-          "Descriptive untuk eksperimen ketika optimisasi tidak memungkinkan",
-          "Metode klasifikasi supervised",
-          "Teknik normalisasi data"
+          "Optimisasi tidak memungkinkan dan perlu eksperimen",
+          "Selalu ada solusi optimal otomatis",
+          "Hanya untuk data kecil",
+          "Tidak butuh model"
         ],
-        answer: 1,
-        explain: "Simulasi bersifat deskriptif dan dipakai saat optimisasi tidak memungkinkan."
+        answer: 0,
+        explain: "Simulasi bersifat deskriptif dan dipakai saat optimisasi sulit dilakukan."
       },
       {
         question: "Monte Carlo simulation menggunakan",
         options: [
-          "Deterministic output tanpa random",
-          "Bilangan acak dan distribusi probabilitas",
+          "Sampling acak dari distribusi probabilitas",
+          "Deterministic output tanpa acak",
           "Aturan asosiasi",
-          "Grafik ROC"
+          "Pruning"
         ],
-        answer: 1,
-        explain: "Monte Carlo memakai bilangan acak untuk mensimulasikan distribusi probabilitas."
+        answer: 0,
+        explain: "Monte Carlo memakai sampling acak untuk mensimulasikan ketidakpastian."
       },
       {
-        question: "Prinsip Responsible AI yang menekankan explainability adalah",
+        question: "Definisi privacy yang tepat adalah",
         options: [
-          "Fairness",
-          "Transparency",
-          "Inclusiveness",
-          "Accountability"
+          "Hak untuk dibiarkan sendiri dan bebas dari gangguan pribadi yang tidak wajar",
+          "Kewajiban membagikan semua data",
+          "Kemampuan menyimpan data lebih lama",
+          "Teknik enkripsi database"
         ],
-        answer: 1,
-        explain: "Transparency menekankan agar sistem dapat dijelaskan dan dipahami."
+        answer: 0,
+        explain: "Privacy adalah hak individu untuk dibiarkan sendiri dan bebas dari gangguan."
+      },
+      {
+        question: "Perbedaan privacy dan security adalah",
+        options: [
+          "Privacy soal hak individu, security soal perlindungan sistem",
+          "Privacy hanya untuk perusahaan, security hanya untuk individu",
+          "Privacy sama dengan security",
+          "Security tidak perlu kebijakan"
+        ],
+        answer: 0,
+        explain: "Privacy menekankan hak individu, security menekankan proteksi sistem dan data."
+      },
+      {
+        question: "Fairness dalam Responsible AI berarti",
+        options: [
+          "Mengurangi bias dan memperlakukan semua pihak secara adil",
+          "Meningkatkan ukuran dataset",
+          "Mengganti semua fitur numerik",
+          "Menghapus evaluasi model"
+        ],
+        answer: 0,
+        explain: "Fairness berfokus pada keadilan dan mitigasi bias."
+      },
+      {
+        question: "Transparency dalam Responsible AI menekankan",
+        options: [
+          "Model dapat dijelaskan dan dipahami",
+          "Model harus rahasia",
+          "Tidak perlu dokumentasi",
+          "Hanya mengejar akurasi"
+        ],
+        answer: 0,
+        explain: "Transparency menuntut explainability dan dokumentasi yang jelas."
+      },
+      {
+        question: "Accountability dalam Responsible AI berarti",
+        options: [
+          "Ada pihak yang bertanggung jawab dan siap diaudit",
+          "Tidak ada pihak yang bertanggung jawab",
+          "Sistem boleh berubah tanpa kontrol",
+          "Semua keputusan diserahkan ke model"
+        ],
+        answer: 0,
+        explain: "Accountability memastikan ada penanggung jawab dan mekanisme audit."
+      },
+      {
+        question: "Reliability and safety dalam Responsible AI berarti",
+        options: [
+          "Sistem stabil dan aman di berbagai kondisi",
+          "Sistem hanya akurat di data training",
+          "Sistem tidak perlu diuji",
+          "Sistem selalu offline"
+        ],
+        answer: 0,
+        explain: "Reliability and safety menuntut performa yang aman dan konsisten."
+      },
+      {
+        question: "Inclusiveness dalam Responsible AI berarti",
+        options: [
+          "Memberdayakan semua kelompok pengguna dan mengurangi eksklusi",
+          "Hanya fokus pada satu kelompok pengguna",
+          "Menghapus akses pengguna",
+          "Menghindari feedback pengguna"
+        ],
+        answer: 0,
+        explain: "Inclusiveness memastikan manfaat teknologi dirasakan luas."
+      },
+      {
+        question: "Praktik terbaik untuk menjaga privasi data adalah",
+        options: [
+          "Mengumpulkan data seperlunya dengan persetujuan yang jelas",
+          "Mengumpulkan semua data tanpa batas",
+          "Menyimpan data selamanya tanpa alasan",
+          "Membagikan data ke pihak ketiga tanpa pemberitahuan"
+        ],
+        answer: 0,
+        explain: "Data minimization dan consent adalah praktik dasar privasi."
+      },
+      {
+        question: "Salah satu sumber bias model yang umum adalah",
+        options: [
+          "Data training tidak representatif",
+          "Terlalu banyak dokumentasi",
+          "Terlalu sering evaluasi",
+          "Ukuran layar dashboard"
+        ],
+        answer: 0,
+        explain: "Bias sering muncul karena data training tidak mewakili populasi sebenarnya."
       }
     ];
 
@@ -972,7 +990,7 @@
     }
 
     function getLabel(index) {
-      return String.fromCharCode(65 + index);
+      return String.fromCharCode(97 + index);
     }
 
     function updateNavGrid() {
@@ -1021,7 +1039,7 @@
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "opt-btn";
-        btn.innerHTML = `<span class="opt-label">${getLabel(index)}</span><span class="opt-text">${option}</span>`;
+        btn.innerHTML = `<span class="opt-label">${getLabel(index)}.</span><span class="opt-text">${option}</span>`;
 
         if (currentAnswer === null) {
           btn.addEventListener("click", () => selectOption(index));
